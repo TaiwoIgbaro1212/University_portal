@@ -5,12 +5,12 @@ class Lecturer{
         try{
             const retVal = await db.getAllLecturers();
             if(retVal == null){
-                res.status(400).json({Error: "DB Response Was Null" });
+                return res.status(400).json({Error: "DB Response Was Null" });
             }
-            res.status(200).send(retVal);
+            return res.status(200).send(retVal);
         } catch(error){
-            res.status(400).json({ Error: error });
             console.log(error);
+            return res.status(400).json({ Error: error });
         }
     }
 
@@ -20,14 +20,14 @@ class Lecturer{
             const retVal = await db.getLecturers(DepartmentId, Status, Name);
             
             if(retVal == null){
-                res.status(400).json({
+                return res.status(400).json({
                     Error: db.getError() === null ? "DB Response was Null" : db.getError() 
                 });
             }
-            res.status(200).send(retVal);
+            return res.status(200).send(retVal);
         } catch(error){
-            res.status(400).json({Error: error});
             console.log(error);
+             return res.status(400).json({Error: error});
         }
     }
 
@@ -35,17 +35,18 @@ class Lecturer{
         try{
             const lecturer = { ... req.body };
             //Validate Api here
+            console.log(lecturer)
             const validate = validator(lecturer);
             if(validate.length > 1){
-                res.status(400).json({ Error: validate});
+                return res.status(400).json({ Error: validate});
             }
             if(!await db.addLecturer(lecturer)){
                 return res.status(400).json({ Error: db.getError() })
             } 
-            res.status(200).json({ IsSuccessFul: true})
+            return res.status(200).json({ IsSuccessFul: true})
         } catch(error){
-            res.status(400).json({ Error: error});
             console.log(error);
+            return res.status(400).json({ Error: error});
         }
     }
     //GET EACH LECTURER
@@ -57,17 +58,17 @@ class Lecturer{
             if(retVal == null){
                 return res.status(400).json({Error: "DB Response Was Null"});
             }
-            res.status(200).send(retVal);
+            return res.status(200).send(retVal);
         } catch(error){
-            res.status(400).json({Error: error});
             console.log(error);
+            return res.status(400).json({Error: error});
         }
     }
 
 
     async removeLecturer(req, res){ 
         try{
-            // Fix this delete courses
+            // Fix this delete Lecturers
             const  lecturerId =  req.params.id;
             const retVal = await db.removeLecturer(lecturerId);
             if(retVal === null){
@@ -122,8 +123,8 @@ const validator = (lecturer) => {
     if(!lecturer.DepartmentId || lecturer.DepartmentId < 1){
         return "Invalid Department Id";
     }
-    if(!lecturer.StaffId || lecturer.StaffId.length < 4){
-        return "Invalid Unique Id";
+    if(!lecturer.StaffId || lecturer.StaffId.length < 3){
+        return "Invalid StaffId Id";
     }
     if(!lecturer.Surname || lecturer.Surname.length < 3){
         return "Invalid/Empty Lecturer Surname";

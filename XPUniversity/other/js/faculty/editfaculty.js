@@ -66,7 +66,7 @@ editingForm.addEventListener('submit', (e) => {
     // Make put request
     axios.put('http://localhost:8097/api/v1/faculties', submitForm).then((result) => {
         console.log(result);
-        window.location.href = 'http://localhost:5500/other/html/faculty/faculty.html'
+        window.location.href = 'http://localhost:5500/XPUniversity/other/html/faculty/faculty.html'
       }).catch((err) => {
         console.log(err);
       });

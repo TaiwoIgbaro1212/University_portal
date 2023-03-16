@@ -60,7 +60,7 @@ document.addEventListener('DOMContentLoaded', populate);
 function deletedepartment(id) {
   console.log(id);
   axios.delete('http://localhost:8097/api/v1/departments/' + id).then((res) => {
-    // window.location.reload()
+    window.location.reload()
   }).catch((err) => {
     console.log(err);
   })

@@ -19,7 +19,7 @@ const populate = async () => {
         <td>
           <a href="../../html/lecturer/editlecturer.html?id=${lecturer.LecturerId}" class="btn btn-primary">Edit</a>
           <button class="btn btn-danger"  onclick="deletelecturer(${lecturer.LecturerId})">Delete</button>
-          <a href="../../html/faculty/detaillecturer.html?id=${lecturer.LecturerId}" class="btn btn-success">Details</a>
+          <a href="../../html/lecturer/detaillecturer.html?id=${lecturer.LecturerId}" class="btn btn-success">Details</a>
         </td>
       `;
       table.appendChild(row);

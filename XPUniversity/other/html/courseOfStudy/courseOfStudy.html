@@ -10,7 +10,7 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
 
-    <title>Lecturer - Dashboard</title>
+    <title>Course of study - Dashboard</title>
 
     <!-- Custom fonts for this template-->
     <link
@@ -84,12 +84,16 @@
           >
             <div class="bg-white py-2 collapse-inner rounded">
               <h6 class="collapse-header">Academic Setups:</h6>
-              <a class="collapse-item" href="../faculty/faculty.html">Faculties</a>
-              <a class="collapse-item" href="../department/department.html">Departments</a>
-              <a class="collapse-item" href="../">Lecturers</a>
-              <a class="collapse-item" href="#"
-                >Course of Studies</a
+              <a class="collapse-item" href="../faculty/faculty.html"
+                >Faculties</a
               >
+              <a class="collapse-item" href="../department/department.html"
+                >Departments</a
+              >
+              <a class="collapse-item" href="../lecturer/lecturer.html"
+                >Lecturers</a
+              >
+              <a class="collapse-item" href="#">Course of Studies</a>
               <a class="collapse-item" href="../">Courses</a>
             </div>
           </div>
@@ -190,12 +194,12 @@
 
       <!-- Content Wrapper -->
       <div id="content-wrapper" class="d-flex flex-column">
-        <!-- Modal for Lecturer -->
+        <!-- Modal for Course Of Study -->
         <div class="modal" tabindex="-1" role="dialog" id="addModal">
           <div class="modal-dialog" role="document">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title">New Lecturer</h5>
+                <h5 class="modal-title">New Course of Study</h5>
                 <button
                   type="button"
                   class="close"
@@ -206,55 +210,87 @@
                 </button>
               </div>
               <div class="modal-body">
-                <form id="addLecturerForm">
-                    <div class="form-group">
-                        <label for="departmentId">Department ID</label>
-                        <input
-                          type="text"
-                          class="form-control"
-                          name="DepartmentId"
-                          id="departmentIdInput"
-                          placeholder="e.g. 3"
-                        />
-                      </div>
-                    <div class="form-group">
-                      <label for="surname">Surname</label>
-                      <input
-                        type="text"
-                        class="form-control"
-                        name="Surname"
-                        id="surname"
-                        placeholder="e.g. Olumuyiwa"
-                      />
-                    </div>
+                <form id="addCourseOfStudyForm">
                   <div class="form-group">
-                    <label for="firstName">First Name</label>
+                    <label for="departmentId">Course of Study ID</label>
                     <input
                       type="text"
                       class="form-control"
-                      name="FirstName"
-                      id="firstName"
-                      placeholder="e.g. Taiwo"
+                      name="DepartmentId"
+                      id="departmentIdInput"
+                      placeholder="e.g. 3"
                     />
                   </div>
                   <div class="form-group">
-                    <label for="otherName">Other Name</label>
+                    <label for="name">Name</label>
                     <input
                       type="text"
                       class="form-control"
-                      name="OtherNames"
-                      id="otherName"
-                      placeholder="e.g. Kunle"
+                      name="Name"
+                      id="name"
+                      placeholder="e.g. Olumuyiwa Segun"
                     />
                   </div>
                   <div class="form-group">
-                    <label for="staffId">Staff ID</label>
+                    <label for="shortName">Short Name</label>
                     <input
                       type="text"
                       class="form-control"
-                      name="StaffId"
-                      id="staffId"
+                      name="ShortName"
+                      id="shortName"
+                      placeholder="e.g. OS"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="uniqueId">Unique ID</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      name="UniqueId"
+                      id="uniqueId"
                       placeholder="e.g TM11"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="award">Award</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      name="Award"
+                      id="award"
+                      placeholder="e.g. PhD"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="duration">Duration</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      name="Duration"
+                      id="duration"
+                      placeholder="e.g. 2"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="requiredCreditUnits"
+                      >Required Credit Units</label
+                    >
+                    <input
+                      type="text"
+                      class="form-control"
+                      name="RequiredCreditUnits"
+                      id="requiredCreditUnits"
+                      placeholder="e.g. 2"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="advisor">Advisor</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      name="Advisor"
+                      id="advisor"
+                      placeholder="e.g. Prof. Olusegun"
                     />
                   </div>
                   <div class="form-group">
@@ -279,7 +315,7 @@
             </div>
           </div>
         </div>
-        <!-- End of Modal for Lecturer -->
+        <!-- End of Modal for Faculty -->
 
         <!-- Modal for Search -->
         <div class="modal" tabindex="-1" role="dialog" id="searchModal">
@@ -299,46 +335,26 @@
               </div>
               <div class="modal-body">
                 <form id="searchModalForm">
-                    <div class="form-group">
-                      <label for="surname">Surname</label>
-                      <input
-                        type="text"
-                        class="form-control"
-                        name="Surname"
-                        id="surname"
-                        placeholder="e.g. Olumuyiwa"
-                      />
-                    </div>
-                    <div class="form-group">
-                        <label for="firstName">First Name</label>
-                        <input
-                          type="text"
-                          class="form-control"
-                          name="FirstName"
-                          id="firstName"
-                          placeholder="e.g. Taiwo"
-                        />
-                      </div>
-                      <div class="form-group">
-                        <label for="otherName">Other Name</label>
-                        <input
-                          type="text"
-                          class="form-control"
-                          name="OtherName"
-                          id="otherName"
-                          placeholder="e.g. Kunle"
-                        />
-                      </div>
-                      <div class="form-group">
-                        <label for="staffId">Staff ID</label>
-                        <input
-                          type="text"
-                          class="form-control"
-                          name="StaffId"
-                          id="staffId"
-                          placeholder="e.g TM11"
-                        />
-                      </div>
+                  <div class="form-group">
+                    <label for="name">Name</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      name="Name"
+                      id="name"
+                      placeholder="e.g. Segun Olumuyiwa"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="departmentId">Department ID</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      name="DepartmentId"
+                      id="departmentId"
+                      placeholder="e.g. 1"
+                    />
+                  </div>
                   <div class="form-group">
                     <div class="form-check">
                       <input
@@ -641,10 +657,13 @@
                 <thead>
                   <tr>
                     <th scope="col">S/N</th>
-                    <th scope="col">Surname</th>
-                    <th scope="col">First Name</th>
-                    <th scope="col">Other Name</th>
-                    <th scope="col">StaffId</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">ShortName</th>
+                    <th scope="col">UniqueId</th>
+                    <th scope="col">Award</th>
+                    <th scope="col">Duration</th>
+                    <th scope="col">RequiredCreditUnits</th>
+                    <th scope="col">Advisor</th>
                     <th scope="col">Status</th>
                     <th scope="col">Actions</th>
                   </tr>
@@ -652,7 +671,7 @@
                 <tbody id="table-body">
                   <!-- 
                   -------------------------------------------------\
-                  All faculties will be loaded here dynamically        >
+                  All courseOfStudy will be loaded here dynamically        >
                   -------------------------------------------------/
                  -->
                 </tbody>
@@ -695,7 +714,6 @@
 
     <!-- My own js file -->
     <script src="../../js/Validate.js"></script>
-    <script src="../../js/lecturer/lecturer.js"></script>
-    <!-- <script src="../../js/lecturer/editLecturer.js"></script> -->
+    <script src="../../js/courseOfStudy/courseOfStudy.js"></script>
   </body>
 </html>

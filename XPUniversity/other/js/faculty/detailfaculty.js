@@ -5,7 +5,6 @@ const nameInput = document.querySelector('#nameInput');
 const uniqueIdInput = document.querySelector('#uniqueIdInput');
 const codeInput = document.querySelector('#codeInput');
 const statusInput = document.querySelector('#statusInput');
-
 const editingForm = document.querySelector('#editingForm');
 
 // GET PARAMETERS OR ID FROM THE CURRENT FACULTY TO EDITING FORM

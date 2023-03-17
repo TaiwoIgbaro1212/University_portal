@@ -18,7 +18,7 @@ facultyIdInput.value = paramValue;
 
 // Get information from the id parameter
 const getDepartmentById = async () => {
-    const dataObj = await axios.get(`http://localhost:8097/api/v1/departments/${facultyIdInput.value}`)
+    const dataObj = await axios.get(`http://localhost:8097/api/v1/departments/${courseOfStudyIdInput.value}`)
     const data = await dataObj.data
     console.log(data.UniqueId);
     nameInput.value  = data.Name;

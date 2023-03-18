@@ -3,11 +3,11 @@ class Validator {
 
   }
   errorMsg = "";
-  getError() { return errorMsg; }
+  getError() { return this.errorMsg; }
 
   isBodyValid() {
     if (req.body == null) {
-      errorMsg = "Invalid request parameters";
+      this.errorMsg = "Invalid request parameters";
       return false;
     }
     return true;
@@ -15,10 +15,17 @@ class Validator {
 
   mininteger(input, minInt, name) {
     if (input < minInt) {
-      errorMsg = `Invalid input for ${name}`;
+      this.errorMsg = `Invalid input for ${name}`;
       return false;
     }
     return true
+  }
+
+  isNumber(input, name) {
+    if (parseInt(input) === NaN) {
+      this.errorMsg = `Invalid input for ${name}`;
+      return false;
+    } return true
   }
 
 
@@ -26,22 +33,22 @@ class Validator {
     let inputLength = input.length;
 
     if (inputLength < minValue) {
-      errorMsg = `${name} must be minimum of ${minValue} characters`;
+      this.errorMsg = `${name} must be minimum of ${minValue} characters`;
       return false;
     }
     return true
   }
 
   // verifica se um input passou do limite de caracteres
-  maxlength(input, maxValue) {
-    let inputLength = input.value.length;
+  // maxlength(input, maxValue) {
+  //   let inputLength = input.value.length;
 
-    let errorMessage = `O campo precisa ter menos que ${maxValue} caracteres`;
+  //   let errorMessage = `O campo precisa ter menos que ${maxValue} caracteres`;
 
-    if (inputLength > maxValue) {
-      this.printMessage(input, errorMessage);
-    }
-  }
+  //   if (inputLength > maxValue) {
+  //     this.printMessage(input, errorMessage);
+  //   }
+  // }
 
   // verifica se um input só contém letras
   onlyletters(input) {

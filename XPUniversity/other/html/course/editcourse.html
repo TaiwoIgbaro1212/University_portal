@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Edit Course</title>
 
   <!-- Custom fonts for this template-->
   <!-- Custom fonts for this template-->
@@ -17,7 +17,7 @@
   <!-- Custom styles for this template-->
   <link href="../../../Assets/css/sb-admin-2.min.css" rel="stylesheet" />
 
-  <link rel="stylesheet" href="../../css/department/editDepartment.css">
+  <link rel="stylesheet" href="../../css/course/editCourse.css">
 </head>
 
 </head>
@@ -79,7 +79,7 @@
               <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Academic Setups:</h6>
                 <a class="collapse-item" href="../faculty/faculty.html">Faculties</a>
-                <a class="collapse-item" href="#">Departments</a>
+                <a class="collapse-item" href="../department/department.html">Departments</a>
                 <a class="collapse-item" href="../courseOfStudy/courseOfStudy.html"
                   >Course of Studies</a
                 >
@@ -182,31 +182,50 @@
         </ul>
         <!-- End of Sidebar -->
     <div id="content-wrapper" class="d-flex flex-column pt-3">
-      <h3 class="text-center title">Faculty Detail</h3>
+      <h3 class="text-center title">Edit Course</h3>
       <!-- EDITING FORM START  -->
       <form id="editingForm" class="editing_form">
         <div class="form-group">
-          <label for="facultyIdInput">Faculty ID</label>
-          <input type="text" class="form-control" disabled="true" id="facultyIdInput" placeholder="Enter faculty ID">
+          <label for="courseIdInput">Course ID</label>
+          <input type="text" class="form-control" disabled="true" id="courseIdInput" placeholder="Enter course ID">
+        </div>
+        <div class="form-group">
+          <label for="departmentIdInput">Department ID</label>
+          <input type="text" class="form-control" disabled="true" id="departmentIdInput" placeholder="Enter department ID">
         </div>
         <div class="form-group">
           <label for="nameInput">Name</label>
-          <input type="text" class="form-control" disabled="true" value="" id="nameInput" placeholder="Enter faculty name">
-        </div>
-        <div class="form-group">
-          <label for="uniqueIdInput">Unique ID</label>
-          <input type="text" disabled="true" class="form-control" id="uniqueIdInput" placeholder="Enter unique ID">
+          <input type="text" class="form-control" value="" id="nameInput" placeholder="Enter course 0f study">
         </div>
         <div class="form-group">
           <label for="codeInput">Code</label>
-          <input type="text" disabled="true" class="form-control" id="codeInput" placeholder="Enter code">
+          <input type="text" class="form-control" value="" id="codeInput" placeholder="Enter Code">
+        </div>
+        <div class="form-group">
+          <label for="uniqueIdInput">Unique ID</label>
+          <input type="text" class="form-control" id="unitsInput" placeholder="Enter Units">
+        </div>
+        <div class="form-group">
+          <label for="unitsInput">Units</label>
+          <input type="text" class="form-control" value="" id="awardInput" placeholder="Enter award">
+        </div>
+        <div class="form-group">
+          <label for="courseLevelInput">Course Level</label>
+          <input type="text" class="form-control" value="" id="courseLevelInput" placeholder="Enter course Level">
+        </div>
+        <div class="form-group">
+          <label for="courseSemesterInput">Course Semester</label>
+          <input type="text" class="form-control" value="" id="courseSemesterInput" placeholder="Enter Course Semester">
         </div>
         <div class="form-group">
           <label for="statusInput">Status</label>
-          <input  disabled="true" class="form-control" id="statusInput" />
+          <select class="form-control" id="statusInput">
+            <option value="1">Active</option>
+            <option value="0">Inactive</option>
+          </select>
         </div>
-        <a href="./department.html" class="btn btn-primary">Back</a>
-    </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
 
       <!-- EDITING FORM END  -->
     </div>
@@ -228,7 +247,7 @@
 
   <!-- My own js file -->
   <script src="../../js/Validate.js"></script>
-  <script src="../../js/department/detailsDepartment.js"></script>
+  <script src="../../js/course/editcourse.js"></script>
 
 </body>
 

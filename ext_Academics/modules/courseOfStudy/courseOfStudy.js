@@ -39,6 +39,7 @@ class CourseOfStudy {
     }
 
     async createCourseOfStudy(req, res) {
+        console.log(req.body);
         try {
             const validatedCourseOfStudy = validate(req.body)
             if (validatedCourseOfStudy !== "") {
@@ -126,7 +127,7 @@ const validate = (CourseOfStudy) => {
     if (CourseOfStudy.Advisor == null || CourseOfStudy.Advisor == undefined || CourseOfStudy.Advisor.length < 1) {
         return "Advisor is required. ";
     }
-    if (CourseOfStudy.Status == null || CourseOfStudy.Status == undefined || CourseOfStudy.Status < 1) {
+    if (CourseOfStudy.Status < 0 || typeof(CourseOfStudy.Status) !== "number") {
         return "Status is required. ";
     }
     return "";

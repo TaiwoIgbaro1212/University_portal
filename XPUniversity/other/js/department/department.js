@@ -1,10 +1,10 @@
 const addDepartmentForm = document.getElementById('addDepartmentForm');
+const table = document.getElementById('table-body');
 let departments = [];
 let faculties = []
 
 
 const renderTable = () => {
-  const table = document.getElementById('table-body');
   departments.forEach((department, index) => {
     const row = document.createElement('tr');
     row.innerHTML = `
@@ -56,6 +56,62 @@ const populate = async () => {
 }
 
 document.addEventListener('DOMContentLoaded', populate);
+
+// SEARCH AREA
+
+const searchModalForm = document.querySelector('#searchModalForm');
+const searchModal = document.getElementById("searchModal");
+const searchModalEvent = new MouseEvent('click', {
+
+  view: window,
+  bubbles: true,
+  cancelable: true
+});
+
+
+searchModalForm.addEventListener('submit', searchDepartmentForm)
+
+async function searchDepartmentForm(e) {
+  e.preventDefault()
+  table.innerHTML = null
+
+  const formData = new FormData(searchModalForm);
+  const searchFormData = Object.fromEntries(formData.entries());
+  if (searchFormData.Status) {
+    searchFormData.Status = 1;
+  } else {
+    searchFormData.Status = -1;
+  }
+
+  console.log(searchFormData);
+
+  const fetchFilter = await axios.post('http://localhost:8097/api/v1/departments/', searchFormData);
+  const resultFilter = await fetchFilter
+  const filteredData = resultFilter.data
+
+  if (filteredData.length < 1) {
+    setTimeout(() => {
+        alert('No Such Data Exist')
+    }, 1000);
+  }
+
+  filteredData.forEach((department, index) => {
+    const row = document.createElement('tr');
+    row.innerHTML = `
+    <td>${index + 1}</td>
+    <td>${department.Name}</td>
+    <td>${department.UniqueId}</td>
+    <td>${department.Code}</td>
+    <td>${department.Status == 1 ? '<div class="text-success">Active</div>' : '<div class="text-danger">Inactive<div>'}</td>
+    <td>
+      <a href="../../html/department/editdepartment.html?id=${department.DepartmentId}" class="btn btn-primary">Edit</a>
+      <button class="btn btn-danger"  onclick="deletedepartment(${department.DepartmentId})">Delete</button>
+      <a href="../../html/department/detaildepartment.html?id=${department.DepartmentId}" class="btn btn-success">Details</a>
+    </td>
+    `;
+    table.appendChild(row);
+  });
+}
 
 function deletedepartment(id) {
   console.log(id);

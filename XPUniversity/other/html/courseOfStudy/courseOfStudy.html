@@ -212,12 +212,12 @@
               <div class="modal-body">
                 <form id="addCourseOfStudyForm">
                   <div class="form-group">
-                    <label for="departmentId">Course of Study ID</label>
+                    <label for="department">Department ID</label>
                     <input
                       type="text"
                       class="form-control"
                       name="DepartmentId"
-                      id="departmentIdInput"
+                      id="department"
                       placeholder="e.g. 3"
                     />
                   </div>
@@ -345,7 +345,7 @@
                       placeholder="e.g. Segun Olumuyiwa"
                     />
                   </div>
-                  <div class="form-group">
+                  <!-- <div class="form-group">
                     <label for="departmentId">Department ID</label>
                     <input
                       type="text"
@@ -354,7 +354,7 @@
                       id="departmentId"
                       placeholder="e.g. 1"
                     />
-                  </div>
+                  </div> -->
                   <div class="form-group">
                     <div class="form-check">
                       <input
@@ -630,7 +630,7 @@
             <div
               class="d-sm-flex align-items-center justify-content-between mb-4"
             >
-              <h1 class="h3 mb-0 text-gray-800">Lecturers</h1>
+              <h1 class="h3 mb-0 text-gray-800">Course of Study</h1>
 
               <!-- TODO: Add functionality to button -->
               <button
@@ -638,7 +638,7 @@
                 data-target="#addModal"
                 class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"
               >
-                <i class="fas fa-plus fa-sm text-white-50 mr-2"></i> Add Faculty
+                <i class="fas fa-plus fa-sm text-white-50 mr-2"></i> Add Course Of Study
               </button>
 
               <!-- Search form -->
@@ -660,10 +660,6 @@
                     <th scope="col">Name</th>
                     <th scope="col">ShortName</th>
                     <th scope="col">UniqueId</th>
-                    <th scope="col">Award</th>
-                    <th scope="col">Duration</th>
-                    <th scope="col">RequiredCreditUnits</th>
-                    <th scope="col">Advisor</th>
                     <th scope="col">Status</th>
                     <th scope="col">Actions</th>
                   </tr>

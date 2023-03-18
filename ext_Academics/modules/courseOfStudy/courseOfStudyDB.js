@@ -85,6 +85,10 @@ const addCourseOfStudy = async (courseOfStudy) => {
     }
     return null;
   } catch (error) {
+    if (error.code === "23503"){
+      errMsg = "The Department doesn't exist"
+      return null;
+    }
     console.log(error);
     errMsg = error;
     return null;

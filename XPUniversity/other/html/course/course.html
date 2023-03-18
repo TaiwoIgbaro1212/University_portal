@@ -10,7 +10,7 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
 
-    <title>Lecturer - Dashboard</title>
+    <title>Course</title>
 
     <!-- Custom fonts for this template-->
     <link
@@ -84,13 +84,21 @@
           >
             <div class="bg-white py-2 collapse-inner rounded">
               <h6 class="collapse-header">Academic Setups:</h6>
-              <a class="collapse-item" href="../faculty/faculty.html">Faculties</a>
-              <a class="collapse-item" href="../department/department.html">Departments</a>
-              <a class="collapse-item" href="#/">Lecturers</a>
-              <a class="collapse-item" href="../courseOfStudy/courseOfStudy.html"
+              <a class="collapse-item" href="../faculty/faculty.html"
+                >Faculties</a
+              >
+              <a class="collapse-item" href="../department/department.html"
+                >Departments</a
+              >
+              <a
+                class="collapse-item"
+                href="../courseOfStudy/courseOfStudy.html"
                 >Course of Studies</a
               >
               <a class="collapse-item" href="../">Courses</a>
+              <a class="collapse-item" href="../lecturer/lecturer.html"
+                >Lecturers</a
+              >
             </div>
           </div>
         </li>
@@ -190,12 +198,12 @@
 
       <!-- Content Wrapper -->
       <div id="content-wrapper" class="d-flex flex-column">
-        <!-- Modal for Lecturer -->
+        <!-- Modal for Department -->
         <div class="modal" tabindex="-1" role="dialog" id="addModal">
           <div class="modal-dialog" role="document">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title">New Lecturer</h5>
+                <h5 class="modal-title">New Course</h5>
                 <button
                   type="button"
                   class="close"
@@ -206,55 +214,75 @@
                 </button>
               </div>
               <div class="modal-body">
-                <form id="addLecturerForm">
-                    <div class="form-group">
-                        <label for="departmentId">Department ID</label>
-                        <input
-                          type="text"
-                          class="form-control"
-                          name="DepartmentId"
-                          id="departmentIdInput"
-                          placeholder="e.g. 3"
-                        />
-                      </div>
-                    <div class="form-group">
-                      <label for="surname">Surname</label>
-                      <input
-                        type="text"
-                        class="form-control"
-                        name="Surname"
-                        id="surname"
-                        placeholder="e.g. Olumuyiwa"
-                      />
-                    </div>
+                <form id="addCourseForm">
                   <div class="form-group">
-                    <label for="firstName">First Name</label>
+                    <label for="department">Department ID</label>
+                    <select
+                      class="form-control departmentSelect"
+                      name="DepartmentId"
+                      id="department"
+                    >
+                      <option value="">Select faculty</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="name">Course Name</label>
                     <input
                       type="text"
                       class="form-control"
-                      name="FirstName"
-                      id="firstName"
-                      placeholder="e.g. Taiwo"
+                      name="Name"
+                      id="name"
+                      placeholder="e.g. Marketing"
                     />
                   </div>
                   <div class="form-group">
-                    <label for="otherName">Other Name</label>
+                    <label for="code">Code</label>
                     <input
                       type="text"
                       class="form-control"
-                      name="OtherNames"
-                      id="otherName"
-                      placeholder="e.g. Kunle"
+                      name="Code"
+                      id="code"
+                      placeholder=" e.g. 202"
                     />
                   </div>
                   <div class="form-group">
-                    <label for="staffId">Staff ID</label>
+                    <label for="uniqueId">Unique ID</label>
                     <input
                       type="text"
                       class="form-control"
-                      name="StaffId"
-                      id="staffId"
-                      placeholder="e.g TM11"
+                      name="UniqueId"
+                      id="uniqueId"
+                      placeholder="e.g MKT100"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="units">Units</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      name="Units"
+                      id="units"
+                      placeholder="e.g 2"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="courseLevel">Course Level</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      name="CourseLevel"
+                      id="courseLevel"
+                      placeholder="e.g 100"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="courseSemester">Course Semester</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      name="CourseSemester"
+                      id="courseSemester"
+                      placeholder="e.g 1"
                     />
                   </div>
                   <div class="form-group">
@@ -279,7 +307,7 @@
             </div>
           </div>
         </div>
-        <!-- End of Modal for Lecturer -->
+        <!-- End of Modal for Faculty -->
 
         <!-- Modal for Search -->
         <div class="modal" tabindex="-1" role="dialog" id="searchModal">
@@ -299,46 +327,26 @@
               </div>
               <div class="modal-body">
                 <form id="searchModalForm">
-                    <div class="form-group">
-                      <label for="surname">Surname</label>
-                      <input
-                        type="text"
-                        class="form-control"
-                        name="Surname"
-                        id="surname"
-                        placeholder="e.g. Olumuyiwa"
-                      />
-                    </div>
-                    <div class="form-group">
-                        <label for="firstName">First Name</label>
-                        <input
-                          type="text"
-                          class="form-control"
-                          name="FirstName"
-                          id="firstName"
-                          placeholder="e.g. Taiwo"
-                        />
-                      </div>
-                      <div class="form-group">
-                        <label for="otherName">Other Name</label>
-                        <input
-                          type="text"
-                          class="form-control"
-                          name="OtherName"
-                          id="otherName"
-                          placeholder="e.g. Kunle"
-                        />
-                      </div>
-                      <div class="form-group">
-                        <label for="staffId">Staff ID</label>
-                        <input
-                          type="text"
-                          class="form-control"
-                          name="StaffId"
-                          id="staffId"
-                          placeholder="e.g TM11"
-                        />
-                      </div>
+                  <!-- <div class="form-group">
+                    <label for="deptId">Department ID</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      name="deptId"
+                      id="deptId"
+                      placeholder="e.g. 02"
+                    />
+                  </div> -->
+                  <div class="form-group">
+                    <label for="facultyName">Name</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      name="facultyName"
+                      id="facultyName"
+                      placeholder=" e.g. Faculty of Management Science"
+                    />
+                  </div>
                   <div class="form-group">
                     <div class="form-check">
                       <input
@@ -614,7 +622,19 @@
             <div
               class="d-sm-flex align-items-center justify-content-between mb-4"
             >
-              <h1 class="h3 mb-0 text-gray-800">Lecturers</h1>
+              <h1 class="h3 mb-0 text-gray-800">Course</h1>
+
+              <!-- Search form -->
+              <!-- <form class="form-inline">
+				<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+				<button
+				  class="btn btn-outline-primary my-2 my-sm-0"
+				  type="submit"
+				>
+				  Search
+				</button>
+			  </form> -->
+              <!-- End of search bar -->
 
               <!-- TODO: Add functionality to button -->
               <button
@@ -622,7 +642,8 @@
                 data-target="#addModal"
                 class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"
               >
-                <i class="fas fa-plus fa-sm text-white-50 mr-2"></i> Add Faculty
+                <i class="fas fa-plus fa-sm text-white-50 mr-2"></i> Add
+                Course
               </button>
 
               <!-- Search form -->
@@ -641,20 +662,22 @@
                 <thead>
                   <tr>
                     <th scope="col">S/N</th>
-                    <th scope="col">Surname</th>
-                    <th scope="col">First Name</th>
-                    <th scope="col">Other Name</th>
-                    <th scope="col">StaffId</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">UniqueId</th>
+                    <th scope="col">Level</th>
+                    <th scope="col">Semester</th>
+                    <th scope="col">Units</th>
+                    <th scope="col">Code</th>
                     <th scope="col">Status</th>
                     <th scope="col">Actions</th>
                   </tr>
                 </thead>
                 <tbody id="table-body">
                   <!-- 
-                  -------------------------------------------------\
-                  All faculties will be loaded here dynamically        >
-                  -------------------------------------------------/
-                 -->
+				  -------------------------------------------------\
+				  All departments will be loaded here dynamically        >
+				  -------------------------------------------------/
+				 -->
                 </tbody>
               </table>
             </div>
@@ -695,7 +718,7 @@
 
     <!-- My own js file -->
     <script src="../../js/Validate.js"></script>
-    <script src="../../js/lecturer/lecturer.js"></script>
-    <!-- <script src="../../js/lecturer/editLecturer.js"></script> -->
+    <script src="../../js/course/course.js"></script>
+    <!-- <script src="../../../../XPUniversity/other/html/department/detailsDepartment.html"></script> -->
   </body>
 </html>

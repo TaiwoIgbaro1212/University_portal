@@ -14,10 +14,6 @@ const populate = async () => {
         <td>${courseOfStudy.Name}</td>
         <td>${courseOfStudy.ShortName}</td>
         <td>${courseOfStudy.UniqueId}</td>
-        <td>${courseOfStudy.Award}</td>
-        <td>${courseOfStudy.Duration}</td>
-        <td>${courseOfStudy.RequiredCreditUnits}</td>
-        <td>${courseOfStudy.Advisor}</td>
         <td>${courseOfStudy.Status == 1 ? '<div class="text-success">Active</div>' : '<div class="text-danger">Inactive<div>'}</td>
         <td>
           <a href="../../html/courseOfStudy/editcourseOfStudy.html?id=${courseOfStudy.CourseOfStudyId}" class="btn btn-primary">Edit</a>
@@ -72,7 +68,7 @@ async function searchCourseOfStudyForm(e) {
 
   if (filteredData.length < 1) {
     setTimeout(() => {
-        alert('No Such Data Exist')
+      alert('No Such Data Exist')
     }, 1000);
   }
 
@@ -80,13 +76,9 @@ async function searchCourseOfStudyForm(e) {
     const row = document.createElement('tr');
     row.innerHTML = `
     <td>${index + 1}</td>
-    <td>${courseOfStudy.Name}</td>
-    <td>${courseOfStudy.ShortName}</td>
-    <td>${courseOfStudy.UniqueId}</td>
-    <td>${courseOfStudy.Award}</td>
-    <td>${courseOfStudy.Duration}</td>
-    <td>${courseOfStudy.RequiredCreditUnits}</td>
-    <td>${courseOfStudy.Advisor}</td>
+        <td>${courseOfStudy.Name}</td>
+        <td>${courseOfStudy.ShortName}</td>
+        <td>${courseOfStudy.UniqueId}</td>
     <td>${courseOfStudy.Status == 1 ? '<div class="text-success">Active</div>' : '<div class="text-danger">Inactive<div>'}</td>
     <td>
       <a href="../../html/courseOfStudy/editcourseOfStudy.html?id=${courseOfStudy.CourseOfStudyId}" class="btn btn-primary">Edit</a>
@@ -99,8 +91,8 @@ async function searchCourseOfStudyForm(e) {
 }
 
 
-function deletecourseOfStudy(id){
-  axios.delete('http://localhost:8097/api/v1/coursesOfStudy/'+id).then((res) => {
+function deletecourseOfStudy(id) {
+  axios.delete('http://localhost:8097/api/v1/coursesOfStudy/' + id).then((res) => {
     window.location.reload()
   }).catch((err) => {
     console.log(err);
@@ -116,7 +108,7 @@ addCourseOfStudyForm.addEventListener('submit', (e) => {
   if (data.Status) {
     data.Status = 1;
   } else {
-    data.Status = -1;
+    data.Status = 0;
   }
   console.log(data);
 
@@ -124,9 +116,13 @@ addCourseOfStudyForm.addEventListener('submit', (e) => {
   validate.length(data.Name, 3, 50, 'Name');
   validate.length(data.ShortName, 3, 50, 'ShortName');
   validate.length(data.UniqueId, 3, 10, 'UniqueId');
-  validate.length(data.Award, 3, 10, 'Award');
-  validate.length(data.Advisor, 3, 10, 'UniqueId');
-  validate.length(data.Code, 3, 10, 'Code');
+  validate.length(data.Award, 3, 100, 'Award');
+  validate.length(data.Advisor, 3, 50, 'UniqueId');
+
+  data.DepartmentId = Number(data.DepartmentId);
+  data.RequiredCreditUnits = Number(data.RequiredCreditUnits);
+  data.Duration = Number(data.Duration);
+  // validate.length(data.Code, 3, 10, 'Code');
 
   if (validate.errors.length > 0) {
     alert(validate.errors[0]);
@@ -134,7 +130,7 @@ addCourseOfStudyForm.addEventListener('submit', (e) => {
   } else {
     console.log(data);
     // Make post request
-    axios.post('http://localhost:8097/api/v1/coursesOfStudy/add',data).then((result) => {
+    axios.post('http://localhost:8097/api/v1/coursesOfStudy/add', data).then((result) => {
       console.log(result);
       window.location.reload()
     }).catch((err) => {

@@ -16,7 +16,7 @@ const renderTable = () => {
       <td>
         <a href="../../html/department/editdepartment.html?id=${department.DepartmentId}" class="btn btn-primary">Edit</a>
         <button class="btn btn-danger"  onclick="deletedepartment(${department.DepartmentId})">Delete</button>
-        <a href="../../html/department/detaildepartment.html?id=${department.DepartmentId}" class="btn btn-success">Details</a>
+        <a href="../../html/department/detailsdepartment.html?id=${department.DepartmentId}" class="btn btn-success">Details</a>
       </td>
     `;
     table.appendChild(row);
@@ -114,9 +114,9 @@ async function searchDepartmentForm(e) {
 }
 
 function deletedepartment(id) {
-  // console.log(id);
+  console.log(id);
   axios.delete('http://localhost:8097/api/v1/departments/' + id).then((res) => {
-    window.location.reload()
+    // window.location.reload()
   }).catch((err) => {
     console.log(err);
   })

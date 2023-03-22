@@ -70,7 +70,7 @@ class Course {
       //Validate Api here
       const validateRes = validator(course);
       if (validateRes.length > 1) {
-        res.status(400).json({ Error: validate });
+        res.status(400).json({ Error: validateRes });
       }
       if (!await db.addCourse(course)) {
         return res.status(400).json({ Error: db.getError() })

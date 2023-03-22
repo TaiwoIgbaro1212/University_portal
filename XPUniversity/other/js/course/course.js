@@ -29,8 +29,8 @@ const renderTable = () => {
 
 const generateSelectOptions = () => {
   const selects = document.querySelectorAll('.departmentSelect');
-  console.log(departments)
-  console.log(selects);
+  // console.log(departments)
+  // console.log(selects);
   selects.forEach(select => {
     departments.forEach(department => {
       const op = document.createElement('option')

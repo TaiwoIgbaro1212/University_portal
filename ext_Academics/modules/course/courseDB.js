@@ -69,8 +69,12 @@ const addCourse = async (course) => {
     }
     return null
   } catch (error) {
+    if (error.code === '23505') {
+      errMsg = "Unique ID already exists in the database"
+    } else {
+      errMsg = error;
+    }
     console.log(error);
-    errMsg = error;
     return null;
   }
 }
@@ -83,7 +87,12 @@ const editCourse = async (course) => {
     }
     // return [];
   } catch (error) {
-    errMsg = error;
+    if (error.code === '23505') {
+      errMsg = "Unique ID already exists in the database"
+    } else {
+      errMsg = error;
+    }
+    console.log(error);
     return null;
   }
 }
@@ -104,7 +113,9 @@ const removeCourse = async (id) => {
 
 
 const getError = () => {
-  return errMsg;
+  const temp = errMsg;
+  errMsg = "";
+  return temp;
 }
 
 module.exports = {

@@ -58,9 +58,7 @@ addLecturerForm.addEventListener('submit', (e) => {
   const validate = new Validate();
   validate.length(data.FirstName, 3, 50, 'Name');
   validate.length(data.Surname, 3, 50, 'Name');
-  // validate.length(data.OtherNames, 3, 50, 'Name');
   validate.length(data.StaffId, 3, 10, 'StaffId');
-//   validate.length(data.Code, 3, 10, 'Code');
 
   if (validate.errors.length > 0) {
     alert(validate.errors[0]);

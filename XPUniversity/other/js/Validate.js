@@ -31,5 +31,19 @@ class Validate {
     return true
   }
 
+  mininteger(input, minInt, name) {
+    if (input < minInt) {
+      this._errors.push(`Invalid input for ${name}`);
+      return false;
+    }
+    return true
+  }
   
+  isNumber(input, name) {
+    if (parseInt(input) === NaN) {
+      this._errors.push(`Invalid input for ${name}`);
+      return false;
+    } 
+    return true
+  }
 }

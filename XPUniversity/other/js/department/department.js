@@ -39,11 +39,11 @@ const generateSelectOptions = () => {
 const populate = async () => {
   try {
     // const table = document.getElementById('table-body');
-    const response = await axios.get('http://localhost:8097/api/v1/departments');
+    const response = await axios.get('http://192.168.17.220:8097/api/v1/departments');
     const data = response.data;
     departments = data
 
-    const response2 = await axios.get('http://localhost:8097/api/v1/faculties');
+    const response2 = await axios.get('http://192.168.17.220:8097/api/v1/faculties');
     const data2 = response2.data;
     faculties = data2
 
@@ -68,7 +68,6 @@ const searchModalEvent = new MouseEvent('click', {
   cancelable: true
 });
 
-
 searchModalForm.addEventListener('submit', searchDepartmentForm)
 
 async function searchDepartmentForm(e) {
@@ -80,12 +79,11 @@ async function searchDepartmentForm(e) {
   if (searchFormData.Status) {
     searchFormData.Status = 1;
   } else {
-    searchFormData.Status = -1;
+    searchFormData.Status = 0;
   }
 
   console.log(searchFormData);
-
-  const fetchFilter = await axios.post('http://localhost:8097/api/v1/departments/', searchFormData);
+  const fetchFilter = await axios.post('http://192.168.17.220:8097/api/v1/departments/', searchFormData);
   const resultFilter = await fetchFilter
   const filteredData = resultFilter.data
 
@@ -115,8 +113,8 @@ async function searchDepartmentForm(e) {
 
 function deletedepartment(id) {
   console.log(id);
-  axios.delete('http://localhost:8097/api/v1/departments/' + id).then((res) => {
-    // window.location.reload()
+  axios.delete('http://192.168.17.220:8097/api/v1/departments/' + id).then((res) => {
+    window.location.reload()
   }).catch((err) => {
     console.log(err);
   })
@@ -145,7 +143,7 @@ addDepartmentForm.addEventListener('submit', (e) => {
   } else {
     console.log(data);
     // Make post request
-    axios.post('http://localhost:8097/api/v1/departments/add', data).then((result) => {
+    axios.post('http://192.168.17.220:8097/api/v1/departments/add', data).then((result) => {
       console.log(result);
       window.location.reload()
     }).catch((err) => {

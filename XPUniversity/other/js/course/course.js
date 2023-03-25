@@ -43,11 +43,11 @@ const generateSelectOptions = () => {
 const populate = async () => {
   try {
     // const table = document.getElementById('table-body');
-    const response = await axios.get('http://localhost:8097/api/v1/courses');
+    const response = await axios.get('http://192.168.17.220:8097/api/v1/courses');
     const data = response.data;
     courses = data
 
-    const response2 = await axios.get('http://localhost:8097/api/v1/departments');
+    const response2 = await axios.get('http://192.168.17.220:8097/api/v1/departments');
     const data2 = response2.data;
     departments = data2
 
@@ -89,7 +89,7 @@ async function searchCourseForm(e) {
 
   console.log(searchFormData);
 
-  const fetchFilter = await axios.post('http://localhost:8097/api/v1/courses/', searchFormData);
+  const fetchFilter = await axios.post('http://192.168.17.220:8097/api/v1/courses/', searchFormData);
   const resultFilter = await fetchFilter
   const filteredData = resultFilter.data
 
@@ -122,7 +122,7 @@ async function searchCourseForm(e) {
 
 function deletecourse(id) {
   console.log(id);
-  axios.delete('http://localhost:8097/api/v1/courses/' + id).then((res) => {
+  axios.delete('http://192.168.17.220:8097/api/v1/courses/' + id).then((res) => {
     window.location.reload()
   }).catch((err) => {
     console.log(err);
@@ -162,7 +162,7 @@ addCourseForm.addEventListener('submit', (e) => {
   } else {
     console.log(data);
     // Make post request
-    axios.post('http://localhost:8097/api/v1/courses/add', data).then((result) => {
+    axios.post('http://192.168.17.220:8097/api/v1/courses/add', data).then((result) => {
       console.log(result);
       window.location.reload()
     }).catch((err) => {

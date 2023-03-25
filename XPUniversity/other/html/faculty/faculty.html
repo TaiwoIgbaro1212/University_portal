@@ -25,6 +25,7 @@
 
     <!-- Custom styles for this template-->
     <link href="../../../Assets/css/sb-admin-2.min.css" rel="stylesheet" />
+
   </head>
 
   <body id="page-top">
@@ -85,9 +86,15 @@
             <div class="bg-white py-2 collapse-inner rounded">
               <h6 class="collapse-header">Academic Setups:</h6>
               <a class="collapse-item" href="#">Faculties</a>
-              <a class="collapse-item" href="../department/department.html">Departments</a>
-              <a class="collapse-item" href="../lecturer/lecturer.html">Lecturers</a>
-              <a class="collapse-item" href="../courseOfStudy/courseOfStudy.html"
+              <a class="collapse-item" href="../department/department.html"
+                >Departments</a
+              >
+              <a class="collapse-item" href="../lecturer/lecturer.html"
+                >Lecturers</a
+              >
+              <a
+                class="collapse-item"
+                href="../courseOfStudy/courseOfStudy.html"
                 >Course of Studies</a
               >
               <a class="collapse-item" href="../course/course.html">Courses</a>
@@ -244,8 +251,9 @@
                         name="Status"
                         type="checkbox"
                         id="status"
-                        value="Active"
+                        
                       />
+                      <!-- TODO: fix checkbox bug here -->
                       <label class="form-check-label" for="status">
                         Is active
                       </label>
@@ -279,16 +287,6 @@
               </div>
               <div class="modal-body">
                 <form id="searchModalForm">
-                  <!-- <div class="form-group">
-                    <label for="deptId">Faculty ID</label>
-                    <input
-                      type="text"
-                      class="form-control"
-                      name="deptId"
-                      id="deptId"
-                      placeholder="e.g. 02"
-                    />
-                  </div> -->
                   <div class="form-group">
                     <label for="Name">Name</label>
                     <input
@@ -322,6 +320,72 @@
           </div>
         </div>
         <!-- End of Modal for Search -->
+
+
+          <!-- EDIT FORM -->
+        <div class="modal" tabindex="-1" role="dialog" id="editModal">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title">Edit Faculty</h5>
+                  <button
+                    type="button"
+                    class="close"
+                    data-dismiss="modal"
+                    aria-label="Close"
+                  ><span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <form id="editingForm" class="editing_form">
+                    <div class="form-group">
+                      <label for="nameInput">Name</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        value=""
+                        id="nameInput"
+                        name="Name"
+                        placeholder="Enter faculty name"
+                      />
+                    </div>
+                    <div class="form-group">
+                      <label for="uniqueIdInput">Unique ID</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="uniqueIdInput"
+                        name="UniqueId"
+                        placeholder="Enter unique ID"
+                      />
+                    </div>
+                    <div class="form-group">
+                      <label for="codeInput">Code</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="codeInput"
+                        name="Code"
+                        placeholder="Enter code"
+                      />
+                    </div>
+                    <div class="form-group">
+                      <label for="statusInput">Status</label>
+                      <input type="checkbox" class="form-check-inline" id="statusInput" name="Status">
+                    </div>
+                    <button type="submit" class="btn btn-primary">
+                      Submit
+                    </button>
+                  </form>
+                </div>
+              </div>
+            </div>
+
+          <!-- EDITING FORM END  -->
+        </div>
+
+        <!---------------------------End of modals----------------------------------->
+
 
         <!-- Main Content -->
         <div id="content">
@@ -489,7 +553,7 @@
                     <div class="dropdown-list-image mr-3">
                       <img
                         class="rounded-circle"
-                        src="../Assets/img/undraw_profile_1.svg"
+                        src="../../../Assets/img/undraw_profile_1.svg"
                         alt="..."
                       />
                       <div class="status-indicator bg-success"></div>
@@ -530,7 +594,7 @@
                   >
                   <img
                     class="img-profile rounded-circle"
-                    src="../Assets/img/undraw_profile.svg"
+                    src="../../../Assets/img/undraw_profile.svg"
                   />
                 </a>
                 <!-- Dropdown - User Information -->
@@ -576,18 +640,6 @@
             >
               <h1 class="h3 mb-0 text-gray-800">Faculties</h1>
 
-              <!-- Search form -->
-              <!-- <form class="form-inline">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                <button
-                  class="btn btn-outline-primary my-2 my-sm-0"
-                  type="submit"
-                >
-                  Search
-                </button>
-              </form> -->
-              <!-- End of search bar -->
-
               <!-- TODO: Add functionality to button -->
               <button
                 data-toggle="modal"
@@ -598,13 +650,24 @@
               </button>
 
               <!-- Search form -->
-              <button
-                data-toggle="modal"
-                data-target="#searchModal"
-                class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"
+              <form
+                class="d-none d-sm-inline-block form-inline ml-md-3 my-2 my-md-0 mw-100 navbar-search"
               >
-                <i class="fas fa-search fa-sm text-white-50 mr-3"></i>Search
-              </button>
+                <div class="input-group">
+                  <input
+                    type="text"
+                    class="form-control bg-gray-200 border-primary small"
+                    placeholder="Search for..."
+                    aria-label="Search"
+                    aria-describedby="basic-addon2"
+                  />
+                  <div class="input-group-append">
+                    <button class="btn btn-primary" type="button">
+                      <i class="fas fa-search fa-sm"></i>
+                    </button>
+                  </div>
+                </div>
+              </form>
 
               <!-- End of search bar -->
             </div>
@@ -629,11 +692,7 @@
                 </tbody>
               </table>
             </div>
-            <!-- Content Row -->
-            <div class="row"></div>
 
-            <!-- Content Row -->
-            <div class="row"></div>
           </div>
         </div>
         <!-- End of Main Content -->
@@ -649,6 +708,7 @@
         <!-- End of Footer -->
       </div>
       <!-- End of Content Wrapper -->
+      
     </div>
 
     <!-- Bootstrap core JavaScript-->

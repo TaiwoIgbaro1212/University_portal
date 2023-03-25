@@ -20,7 +20,7 @@ lecturerIdInput.value = paramValue;
 
 // Get information from the id parameter
 const getLecturerById = async () => {
-    const dataObj = await axios.get(`http://localhost:8097/api/v1/lecturers/${lecturerIdInput.value}`)
+    const dataObj = await axios.get(`http://192.168.17.220:8097/api/v1/lecturers/${lecturerIdInput.value}`)
     const data = await dataObj.data
     console.log(data.StaffIdInput);
     surnameInput.value  = data.Surname;
@@ -73,7 +73,7 @@ editingForm.addEventListener('submit', (e) => {
         alert(validate._errors[0])
     }else{
     // Make put request
-    axios.put('http://localhost:8097/api/v1/lecturers', submitForm).then((result) => {
+    axios.put('http://192.168.17.220:8097/api/v1/lecturers', submitForm).then((result) => {
         console.log(result);
         window.location.href = 'http://localhost:5500/XPUniversity/other/html/lecturer/lecturer.html'
       }).catch((err) => {

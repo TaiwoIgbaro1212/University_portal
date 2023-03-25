@@ -4,7 +4,7 @@ const table = document.getElementById('table-body');
 
 const populate = async () => {
   try {
-    const response = await axios.get('http://localhost:8097/api/v1/coursesOfStudy');
+    const response = await axios.get('http://192.168.17.220:8097/api/v1/coursesOfStudy');
     const data = response.data;
 
     data.forEach((courseOfStudy, index) => {
@@ -62,7 +62,7 @@ async function searchCourseOfStudyForm(e) {
 
   console.log(searchFormData);
 
-  const fetchFilter = await axios.post('http://localhost:8097/api/v1/coursesOfStudy/', searchFormData);
+  const fetchFilter = await axios.post('http://192.168.17.220:8097/api/v1/coursesOfStudy/', searchFormData);
   const resultFilter = await fetchFilter
   const filteredData = resultFilter.data
 
@@ -92,7 +92,7 @@ async function searchCourseOfStudyForm(e) {
 
 
 function deletecourseOfStudy(id) {
-  axios.delete('http://localhost:8097/api/v1/coursesOfStudy/' + id).then((res) => {
+  axios.delete('http://192.168.17.220:8097/api/v1/coursesOfStudy/' + id).then((res) => {
     window.location.reload()
   }).catch((err) => {
     console.log(err);
@@ -130,7 +130,7 @@ addCourseOfStudyForm.addEventListener('submit', (e) => {
   } else {
     console.log(data);
     // Make post request
-    axios.post('http://localhost:8097/api/v1/coursesOfStudy/add', data).then((result) => {
+    axios.post('http://192.168.17.220:8097/api/v1/coursesOfStudy/add', data).then((result) => {
       console.log(result);
       window.location.reload()
     }).catch((err) => {

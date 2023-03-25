@@ -19,7 +19,10 @@
     display: inline-block;
     width: 100%;
   }
-  
+
+  .btn{
+    float: right;
+  }
   /* Make the form responsive */
   @media (max-width: 576px) {
     /* Reduce the font size of the labels for smaller screens */

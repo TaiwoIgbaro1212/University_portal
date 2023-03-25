@@ -4,7 +4,7 @@ const addLecturerForm = document.getElementById('addLecturerForm');
 const populate = async () => {
   try {
     const table = document.getElementById('table-body');
-    const response = await axios.get('http://localhost:8097/api/v1/lecturers');
+    const response = await axios.get('http://192.168.17.220:8097/api/v1/lecturers');
     const data = response.data;
 
     data.forEach((lecturer, index) => {
@@ -34,7 +34,7 @@ const populate = async () => {
 document.addEventListener('DOMContentLoaded', populate);
 
 function deletelecturer(id){
-  axios.delete('http://localhost:8097/api/v1/lecturers/'+id).then((res) => {
+  axios.delete('http://192.168.17.220:8097/api/v1/lecturers/'+id).then((res) => {
     window.location.reload()
   }).catch((err) => {
     console.log(err);
@@ -66,7 +66,7 @@ addLecturerForm.addEventListener('submit', (e) => {
   } else {
     console.log(data);
     // Make post request
-    axios.post('http://localhost:8097/api/v1/lecturers/add',data).then((result) => {
+    axios.post('http://192.168.17.220:8097/api/v1/lecturers/add',data).then((result) => {
       console.log(result);
       window.location.reload()
     }).catch((err) => {

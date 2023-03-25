@@ -22,7 +22,7 @@ courseIdInput.value = paramValue;
 
 // Get information from the id parameter
 const getCourseById = async () => {
-    const dataObj = await axios.get(`http://localhost:8097/api/v1/courses/${courseIdInput.value}`)
+    const dataObj = await axios.get(`http://192.168.17.220:8097/api/v1/courses/${courseIdInput.value}`)
     const data = await dataObj.data
     nameInput.value = data.Name;
     departmentIdInput.value = data.DepartmentId;
@@ -81,7 +81,7 @@ editingForm.addEventListener('submit', (e) => {
         alert(validate._errors[0])
     } else {
         // Make put request
-        axios.put('http://localhost:8097/api/v1/courses', submitForm).then((result) => {
+        axios.put('http://192.168.17.220:8097/api/v1/courses', submitForm).then((result) => {
             console.log(result);
             window.location.href = 'http://localhost:5500/XPUniversity/other/html/course/course.html';
         }).catch((err) => {

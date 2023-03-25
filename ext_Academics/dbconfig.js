@@ -2,7 +2,7 @@ const Pool = require('pg').Pool;
 
 const pgConn = {
   user: 'postgres',
-  host: 'localhost',
+  host: '192.168.17.220',
   database: 'Academic',
   scheme: 'AcadSchema',
   password: 'Igbaro1212.',

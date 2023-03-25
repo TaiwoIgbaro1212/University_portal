@@ -47,3 +47,5 @@ class Validate {
     return true
   }
 }
+
+// export default new Validate;

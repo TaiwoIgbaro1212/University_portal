@@ -197,6 +197,7 @@
 
       <!-- Content Wrapper -->
       <div id="content-wrapper" class="d-flex flex-column">
+
         <!-- Modal for Faculty -->
         <div class="modal" tabindex="-1" role="dialog" id="addModal">
           <div class="modal-dialog" role="document">
@@ -320,7 +321,6 @@
           </div>
         </div>
         <!-- End of Modal for Search -->
-
 
           <!-- EDIT FORM -->
         <div class="modal" tabindex="-1" role="dialog" id="editModal">
@@ -650,6 +650,18 @@
               </button>
 
               <!-- Search form -->
+
+                <div class="d-flex">
+                  <div class="dropdown">
+                    <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Filter
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                      <a class="dropdown-item" href="#">Action</a>
+                      <a class="dropdown-item" href="#">Another action</a>
+                      <a class="dropdown-item" href="#">Something else here</a>
+                    </div>
+                </div>
               <form
                 class="d-none d-sm-inline-block form-inline ml-md-3 my-2 my-md-0 mw-100 navbar-search"
               >
@@ -668,10 +680,11 @@
                   </div>
                 </div>
               </form>
+            </div>
 
               <!-- End of search bar -->
             </div>
-            <div class="container-fluid">
+            <div class="container-fluid" id="table-wrapper">
               <table class="table table-bordered">
                 <thead>
                   <tr>
@@ -692,7 +705,6 @@
                 </tbody>
               </table>
             </div>
-
           </div>
         </div>
         <!-- End of Main Content -->

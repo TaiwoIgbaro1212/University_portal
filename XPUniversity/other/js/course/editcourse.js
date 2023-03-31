@@ -32,7 +32,7 @@ const getCourseById = async () => {
     courseLevelInput.value = data.CourseLevel;
     courseSemesterInput.value = data.CourseSemester;
     statusInput.value = data.Status;
-    // console.log(data.getCourseById);
+    console.log(data.getCourseById);
 }
 document.addEventListener('DOMContentLoaded', getCourseById);
 
@@ -83,7 +83,7 @@ editingForm.addEventListener('submit', (e) => {
         // Make put request
         axios.put('http://192.168.17.220:8097/api/v1/courses', submitForm).then((result) => {
             console.log(result);
-            window.location.href = 'http://localhost:5500/XPUniversity/other/html/course/course.html';
+            // window.location.href = 'http://localhost:5500/XPUniversity/other/html/course/course.html';
         }).catch((err) => {
             console.log(err);
         });

@@ -211,6 +211,8 @@
               </div>
               <div class="modal-body">
                 <form id="addCourseOfStudyForm">
+                  <div class="row">
+                    <div class="col-md-6">
                   <div class="form-group">
                     <label for="department">Department ID</label>
                     <input
@@ -251,6 +253,8 @@
                       placeholder="e.g TM11"
                     />
                   </div>
+                  </div>
+                    <div class="col-md-6">
                   <div class="form-group">
                     <label for="award">Award</label>
                     <input
@@ -307,6 +311,8 @@
                       </label>
                     </div>
                   </div>
+                  </div>
+                  </div>
                   <button type="submit" class="btn btn-primary float-right">
                     Add
                   </button>
@@ -315,7 +321,7 @@
             </div>
           </div>
         </div>
-        <!-- End of Modal for Faculty -->
+        <!-- End of Modal for Course Of Study -->
 
         <!-- Modal for Search -->
         <div class="modal" tabindex="-1" role="dialog" id="searchModal">
@@ -378,6 +384,187 @@
           </div>
         </div>
         <!-- End of Modal for Search -->
+
+        <!---------------- EDIT FORM ----------------->
+
+        <div class="modal" tabindex="-1" role="dialog" id="editModal">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">Edit Course of Study</h5>
+                <button
+                  type="button"
+                  class="close"
+                  data-dismiss="modal"
+                  aria-label="Close"
+                >
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <form id="editingForm">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="departmentIdInput">Department Name</label>
+                        <select
+                          class="form-control departmentSelect"
+                          name="DepartmentId"
+                          id="departmentId"
+                        >
+                          <option value="">--select department--</option>
+                        </select>
+                      </div>
+                      <div class="form-group">
+                        <label for="courseOfStudyIdInput"
+                          >Course of Study</label
+                        >
+                        <input
+                          type="text"
+                          class="form-control"
+                          value=""
+                          name="CourseOfStudyId"
+                          id="courseOfStudyId"
+                          placeholder="Enter your course of study"
+                        />
+                      </div>
+                      <div class="form-group">
+                        <label for="nameInput"> Name</label>
+                        <input
+                          type="text"
+                          class="form-control"
+                          value=""
+                          id="nameInput"
+                          name="Name"
+                          placeholder="Enter name"
+                        />
+                      </div>
+                      <div class="form-group">
+                        <label for="shortNameInput">Short Name</label>
+                        <input
+                          type="text"
+                          class="form-control"
+                          value=""
+                          id="shortNameInput"
+                          name="ShortName"
+                          placeholder="Enter short name"
+                        />
+                      </div>
+                      <div class="form-group">
+                        <label for="uniqueIdInput">Unique ID</label>
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="uniqueIdInput"
+                          name="UniqueId"
+                          placeholder="Enter unique ID"
+                        />
+                      </div>
+                      <div class="form-group">
+                        <label for="statusInput">Status</label>
+                        <input
+                          type="checkbox"
+                          class="form-check-inline"
+                          id="statusInput"
+                          name="Status"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="awardInput">Award</label>
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="awardInput"
+                          name="Award"
+                          placeholder="Enter award"
+                        />
+                      </div>
+                      <div class="form-group">
+                        <label for="uniqueIdInput">Unique ID</label>
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="uniqueIdInput"
+                          name="UniqueId"
+                          placeholder="Enter unique ID"
+                        />
+                      </div>
+                      <div class="form-group">
+                        <label for="advisorInput">Advisor</label>
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="advisorInput"
+                          name="Advisor"
+                          placeholder="Enter advisor"
+                        />
+                      </div>
+                      <div class="form-group">
+                        <label for="durationInput">Duration</label>
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="durationInput"
+                          name="Duration"
+                          placeholder="Enter duration"
+                        />
+                      </div>
+                      <div class="form-group">
+                        <label for="requiredCreditUnitsInput"
+                          >Required Credit Units</label
+                        >
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="requiredCreditUnitsInput"
+                          name="RequiredCreditUnits"
+                          placeholder="Enter Required Credit Units"
+                        />
+                      </div>
+
+                      <button type="submit" class="btn btn-primary">
+                        Edit
+                      </button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+          <!--------------- EDITING FORM END  -------------------->
+        </div>
+        <!---------------- END EDIT FORM ----------------->
+
+        <!--  DETAILS  -->
+        <div class="modal" tabindex="-1" id="detailsModal">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button
+                  type="button"
+                  class="close"
+                  window.location.reload()
+                  data-dismiss="modal"
+                  aria-label="Close"
+                >
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div>
+                <p id="cosName"></p>  
+                <p id="cosShortName"></p>
+                <p id="cosuniqueId">Unique Id:</p>
+                <p id="cosAward"></p>
+                <p id="Duration"></p>
+                <p id="cosrequiredCreditUnits"></p>
+                <p id="cosadvisor"></p>
+              </div>
+              </div>
+            </div>          
+        </div>
+        <!-- END OF DETAILS  -->
 
         <!-- Main Content -->
         <div id="content">
@@ -545,7 +732,7 @@
                     <div class="dropdown-list-image mr-3">
                       <img
                         class="rounded-circle"
-                        src="../Assets/img/undraw_profile_1.svg"
+                        src="../../../Assets/img/undraw_profile_1.svg"
                         alt="..."
                       />
                       <div class="status-indicator bg-success"></div>
@@ -586,7 +773,7 @@
                   >
                   <img
                     class="img-profile rounded-circle"
-                    src="../Assets/img/undraw_profile.svg"
+                    src="../../../Assets/img/undraw_profile.svg"
                   />
                 </a>
                 <!-- Dropdown - User Information -->
@@ -638,7 +825,8 @@
                 data-target="#addModal"
                 class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"
               >
-                <i class="fas fa-plus fa-sm text-white-50 mr-2"></i> Add Course Of Study
+                <i class="fas fa-plus fa-sm text-white-50 mr-2"></i> Add Course
+                Of Study
               </button>
 
               <!-- Search form -->
@@ -657,6 +845,7 @@
                 <thead>
                   <tr>
                     <th scope="col">S/N</th>
+                    <th scope="col">Department</th>
                     <th scope="col">Name</th>
                     <th scope="col">ShortName</th>
                     <th scope="col">UniqueId</th>

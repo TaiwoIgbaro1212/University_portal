@@ -88,9 +88,15 @@
                 >Faculties</a
               >
               <a class="collapse-item" href="#">Departments</a>
-              <a class="collapse-item" href="../courseOfStudy/courseOfStudy.html">Course of Studies</a>
+              <a
+                class="collapse-item"
+                href="../courseOfStudy/courseOfStudy.html"
+                >Course of Studies</a
+              >
               <a class="collapse-item" href="../course/course.html">Courses</a>
-              <a class="collapse-item" href="../lecturer/lecturer.html">Lecturers</a>
+              <a class="collapse-item" href="../lecturer/lecturer.html"
+                >Lecturers</a
+              >
             </div>
           </div>
         </li>
@@ -208,6 +214,16 @@
               <div class="modal-body">
                 <form id="addDepartmentForm">
                   <div class="form-group">
+                    <label for="facultyId">Faculty Name</label>
+                    <select
+                      class="form-control facultySelect"
+                      name="FacultyId"
+                      id="facultyId"
+                    >
+                      <option value="">Select faculty</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
                     <label for="departmentName">Department Name</label>
                     <input
                       type="text"
@@ -216,16 +232,6 @@
                       id="departmentName"
                       placeholder="e.g. Marketing"
                     />
-                  </div>
-                  <div class="form-group">
-                    <label for="facultyId">Faculty ID</label>
-                    <select
-                      class="form-control facultySelect"
-                      name="FacultyId"
-                      id="facultyId"
-                    >
-											<option value="">Select faculty</option>
-										</select>
                   </div>
                   <div class="form-group">
                     <label for="code">Code</label>
@@ -269,7 +275,7 @@
             </div>
           </div>
         </div>
-        <!-- End of Modal for Faculty -->
+        <!-- End of Modal for Department -->
 
         <!-- Modal for Search -->
         <div class="modal" tabindex="-1" role="dialog" id="searchModal">
@@ -322,6 +328,81 @@
           </div>
         </div>
         <!-- End of Modal for Search -->
+
+        <!-- EDIT FORM -->
+        <div class="modal" tabindex="-1" role="dialog" id="editModal">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">Edit Department</h5>
+                <button
+                  type="button"
+                  class="close"
+                  data-dismiss="modal"
+                  aria-label="Close"
+                >
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <form id="editingForm" class="editing_form">
+                  <div class="form-group">
+                    <label for="facultyIdInput">Faculty Name</label>
+                    <select
+                      class="form-control facultySelect"
+                      name="FacultyId"
+                      id="facultyId"
+                    >
+                      <option value="">--select faculty--</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="nameInput">Department Name</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      value=""
+                      id="nameInput"
+                      name="Name"
+                      placeholder="Enter department name"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="uniqueIdInput">Unique ID</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="uniqueIdInput"
+                      name="UniqueId"
+                      placeholder="Enter unique ID"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="codeInput">Code</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="codeInput"
+                      name="Code"
+                      placeholder="Enter code"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="statusInput">Status</label>
+                    <input
+                      type="checkbox"
+                      class="form-check-inline"
+                      id="statusInput"
+                      name="Status"
+                    />
+                  </div>
+                  <button type="submit" class="btn btn-primary">Edit</button>
+                </form>
+              </div>
+            </div>
+          </div>
+          <!--------------- EDITING FORM END  -------------------->
+        </div>
 
         <!-- Main Content -->
         <div id="content">
@@ -489,7 +570,7 @@
                     <div class="dropdown-list-image mr-3">
                       <img
                         class="rounded-circle"
-                        src="../Assets/img/undraw_profile_1.svg"
+                        src="../../../Assets/img/undraw_profile_1.svg"
                         alt="..."
                       />
                       <div class="status-indicator bg-success"></div>
@@ -530,7 +611,7 @@
                   >
                   <img
                     class="img-profile rounded-circle"
-                    src="../Assets/img/undraw_profile.svg"
+                    src="../../../Assets/img/undraw_profile.svg"
                   />
                 </a>
                 <!-- Dropdown - User Information -->
@@ -576,18 +657,6 @@
             >
               <h1 class="h3 mb-0 text-gray-800">Department</h1>
 
-              <!-- Search form -->
-              <!-- <form class="form-inline">
-				<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-				<button
-				  class="btn btn-outline-primary my-2 my-sm-0"
-				  type="submit"
-				>
-				  Search
-				</button>
-			  </form> -->
-              <!-- End of search bar -->
-
               <!-- TODO: Add functionality to button -->
               <button
                 data-toggle="modal"
@@ -614,6 +683,7 @@
                 <thead>
                   <tr>
                     <th scope="col">S/N</th>
+                    <th scope="col">Faculty Name</th>
                     <th scope="col">Name</th>
                     <th scope="col">UniqueId</th>
                     <th scope="col">Code</th>
@@ -668,6 +738,6 @@
     <!-- My own js file -->
     <script src="../../js/Validate.js"></script>
     <script src="../../js/department/department.js"></script>
-		<!-- <script src="../../../../XPUniversity/other/html/department/detailsDepartment.html"></script> -->
+    <!-- <script src="../../../../XPUniversity/other/html/department/detailsDepartment.html"></script> -->
   </body>
 </html>

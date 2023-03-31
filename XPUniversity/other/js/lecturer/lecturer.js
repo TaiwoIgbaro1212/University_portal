@@ -1,11 +1,15 @@
 const addLecturerForm = document.getElementById('addLecturerForm');
-
+const BASE_URL = 'http://192.168.17.220:8097';
+let lecturers = [];
+let departments = [];
+let globalLecturerId;
 
 const populate = async () => {
   try {
     const table = document.getElementById('table-body');
     const response = await axios.get('http://192.168.17.220:8097/api/v1/lecturers');
     const data = response.data;
+    lecturers = data;
 
     data.forEach((lecturer, index) => {
       const row = document.createElement('tr');
@@ -17,9 +21,19 @@ const populate = async () => {
         <td>${lecturer.StaffId}</td>
         <td>${lecturer.Status == 1 ? '<div class="text-success">Active</div>' : '<div class="text-danger">Inactive<div>'}</td>
         <td>
-          <a href="../../html/lecturer/editlecturer.html?id=${lecturer.LecturerId}" class="btn btn-primary">Edit</a>
-          <button class="btn btn-danger"  onclick="deletelecturer(${lecturer.LecturerId})">Delete</button>
-          <a href="../../html/lecturer/detaillecturer.html?id=${lecturer.LecturerId}" class="btn btn-success">Details</a>
+        <button 
+        onclick="handleEditClick(${lecturer.LecturerId})" 
+        class="btn btn-primary"
+        data-toggle="modal"
+        data-target="#editModal">Edit</button>
+  
+        <button 
+      onclick="handleDetailClick(${lecturer.LecturerId})" 
+      class="btn btn-success"
+      data-toggle="modal"
+      data-target="#detailsModal">Details</button>
+        
+        <button class="btn btn-danger"  onclick="deletelecturer(${lecturer.LecturerId})">Delete</button>
         </td>
       `;
       table.appendChild(row);
@@ -76,5 +90,87 @@ addLecturerForm.addEventListener('submit', (e) => {
 
 })
 
+//      EDIT 
+
+const departmentIdInput = document.querySelector('#departmentId');
+
+function handleEditClick(lecturerId) {
+  
+  const lecturer = lecturers.find(lecturer =>lecturer.LecturerId === lecturerId);
+  populateEditForm(lecturer);
+  globalLecturerId = lecturerId;
+}
+
+const lecturerInput = document.querySelector('lecturerId');
+// Get information from the id parameter
+function handleDetailClick(lecturerId) {
+  // get particular course Of study to edit
+  const lecturer = lecturers.find(lecturer => lecturer.LecturerId === lecturerId);
+
+  //fill in form values with department information
+  populateEditForm(lecturer);
+  globalLecturerId = lecturerId;
+
+  document.getElementById("lecfirstName").innerHTML = `Lecturer First Name: ${lecturer.FirstName}`;
+  document.getElementById("lecsurname").innerHTML = `Lecturer Surname: ${lecturer.Surname}`;
+  document.getElementById("lecotherName").innerHTML = `Lecturer Other Name: ${lecturer.OtherNames || 'N/A'}`;
+  document.getElementById("lecstaffId").innerHTML = `Staff ID: ${lecturer.StaffId}`;
+}
 
 
+function populateEditForm(lecturer) {
+  // const editForm = document.getElementById('editingForm')
+  // Array.from(editForm.elements).forEach((element) => {
+  //   // console.log(editForm.elements)
+  //   if (element.name === 'Status') {
+  //     element.checked = lecturer[element.name] === 1 ? true : false;
+  //   }
+  //   if (lecturer.hasOwnProperty(element.name)) {
+  //     element.value = typeof departments[element.name] === 'string' ? lecturer[element.name].trim() : lecturer[element.name];
+  //   }
+  // })
+}
+
+const editForm = document.querySelector('#editingForm');
+editForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+
+  // GET FORM DATA AS AN OBJECT
+  const formData = new FormData(editForm);
+  const data = Object.fromEntries(formData.entries());
+
+  // SET STATUS TO EITHER 1 OR 0
+  data.Status = data.Status ? 1 : 0;
+
+  // GET GLOBAL LecturerId
+  data.LecturerId = globalLecturerId;
+
+  //RESET GLOBAL LecturerId
+  globalLecturerId = undefined;
+
+  console.log(data)
+  validate.isChosen(data.FacultyId, "Faculty Name")
+  validate.length(data.Name, 3, 50, 'Name');
+  validate.length(data.StaffId, 3, 10, 'StaffId');
+  // validate.length(data.Code, 3, 10, 'Code');
+
+
+  // CHECK FOR ERROR BEFORE PUTING
+  if (validate._errors.length > 0) {
+    alert(validate._errors[0])
+  } else {
+    // Make put request
+    axios.put(`${BASE_URL}/api/v1/lecturers/`, data).then((result) => {
+      console.log(result);
+
+
+      const index = lecturers.findIndex(lecturer => lecturer.LecturerId === data.LecturerId);
+      departments[index] = data;
+      renderTable()
+      $(editModal).modal('hide')
+      window.location.reload()
+    }).catch((err) => {
+      console.log(err);
+    });
+  }
+});

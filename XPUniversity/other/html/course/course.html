@@ -198,6 +198,7 @@
 
       <!-- Content Wrapper -->
       <div id="content-wrapper" class="d-flex flex-column">
+
         <!-- Modal for Department -->
         <div class="modal" tabindex="-1" role="dialog" id="addModal">
           <div class="modal-dialog" role="document">
@@ -215,6 +216,8 @@
               </div>
               <div class="modal-body">
                 <form id="addCourseForm">
+                  <div class="row">
+                    <div class="col-md-6">
                   <div class="form-group">
                     <label for="department">Department ID</label>
                     <select
@@ -255,6 +258,8 @@
                       placeholder="e.g MKT100"
                     />
                   </div>
+                  </div>
+                  <div class="col-md-6">
                   <div class="form-group">
                     <label for="units">Units</label>
                     <input
@@ -298,16 +303,132 @@
                         Is active
                       </label>
                     </div>
+                    </div>
                   </div>
                   <button type="submit" class="btn btn-primary float-right">
                     Add
                   </button>
+                </div>
                 </form>
               </div>
             </div>
           </div>
         </div>
-        <!-- End of Modal for Faculty -->
+        <!-- End of Modal for Course -->
+
+      <!-- EDITING FORM START  -->
+      <div class="modal" tabindex="-1" role="dialog" id="editModal">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Edit Course</h5>
+              <button
+                type="button"
+                class="close"
+                data-dismiss="modal"
+                aria-label="Close"
+              >
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form id="editingForm">
+                <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="departmentIdInput">Department Name</label>
+                    <select
+                    class="form-control departmentSelect"
+                    name="DepartmentId"
+                    id="departmentId"
+                  >
+                    <option value="">--select department--</option>
+                  </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="courseIdInput">Course Name</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      disabled="true"
+                      id="courseIdInput"
+                      placeholder="Enter course name"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="nameInput">Name</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="nameInput"
+                      placeholder="Enter course 0f study"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="codeInput">Code</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="codeInput"
+                      placeholder="Enter Code"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="statusInput">Status</label>
+                    <input
+                      type="checkbox"
+                      class="form-check-inline"
+                      id="statusInput"
+                      name="Status"
+                    />
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="uniqueIdInput">Unique ID</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="unitsInput"
+                      placeholder="Enter Units"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="unitsInput">Units</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="awardInput"
+                      placeholder="Enter award"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="courseLevelInput">Course Level</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="courseLevelInput"
+                      placeholder="Enter course Level"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="courseSemesterInput">Course Semester</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="courseSemesterInput"
+                      placeholder="Enter Course Semester"
+                    />
+                  </div>
+                </div>
+              </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </form>
+              </div>
+              </div>
+            </div>
+          </div>
+        <!-- EDITING FORM END  -->
 
         <!-- Modal for Search -->
         <div class="modal" tabindex="-1" role="dialog" id="searchModal">
@@ -624,17 +745,6 @@
             >
               <h1 class="h3 mb-0 text-gray-800">Course</h1>
 
-              <!-- Search form -->
-              <!-- <form class="form-inline">
-				<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-				<button
-				  class="btn btn-outline-primary my-2 my-sm-0"
-				  type="submit"
-				>
-				  Search
-				</button>
-			  </form> -->
-              <!-- End of search bar -->
 
               <!-- TODO: Add functionality to button -->
               <button
@@ -664,8 +774,6 @@
                     <th scope="col">S/N</th>
                     <th scope="col">Name</th>
                     <th scope="col">UniqueId</th>
-                    <th scope="col">Level</th>
-                    <th scope="col">Semester</th>
                     <th scope="col">Units</th>
                     <th scope="col">Code</th>
                     <th scope="col">Status</th>

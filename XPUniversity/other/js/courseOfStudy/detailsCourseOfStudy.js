@@ -9,7 +9,7 @@ const durationInput = document.querySelector('#durationInput');
 const requiredCreditUnitsInput = document.querySelector('#requiredCreditUnitsInput');
 const advisorInput = document.querySelector('#advisorInput');
 const statusInput = document.querySelector('#statusInput');
-const editingForm = document.querySelector('#editingForm');
+const detailForm = document.querySelector('#detailForm');
 
 
 const params = new URLSearchParams(window.location.search);

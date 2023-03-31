@@ -47,5 +47,5 @@ class Validate {
     return true
   }
 }
-
+window.validate = new Validate;
 // export default new Validate;

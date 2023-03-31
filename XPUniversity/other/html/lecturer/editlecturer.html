@@ -181,10 +181,26 @@
           </div>
         </ul>
         <!-- End of Sidebar -->
-    <div id="content-wrapper" class="d-flex flex-column pt-3">
-      <h3 class="text-center title">Edit Lecturer</h3>
-      <!-- EDITING FORM START  -->
-      <form id="editingForm" class="editing_form">
+      <!---------------- EDIT FORM ----------------->
+
+      <div class="modal" tabindex="-1" role="dialog" id="editModal">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Edit Lecturer</h5>
+              <button
+                type="button"
+                class="close"
+                data-dismiss="modal"
+                aria-label="Close"
+              >
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+      <form id="editingForm">
+        <div class="row">
+          <div class="col-md-6">
         <div class="form-group">
           <label for="lecturerIdInput">Lecturer ID</label>
           <input type="text" class="form-control" disabled="true" id="lecturerIdInput" placeholder="Enter lecturer ID">
@@ -198,6 +214,15 @@
           <input type="text" class="form-control" value="" id="surnameInput" placeholder="Enter lecturer surname">
         </div>
         <div class="form-group">
+          <label for="statusInput">Status</label>
+          <select class="form-control" id="statusInput">
+            <option value="1">Active</option>
+            <option value="0">Inactive</option>
+          </select>
+        </div>
+        </div>
+        <div class="col-md-6">
+        <div class="form-group">
           <label for="firstNameInput">First Name</label>
           <input type="text" class="form-control" value="" id="firstNameInput" placeholder="Enter lecturer first name">
         </div>
@@ -209,15 +234,14 @@
           <label for="staffIdInput">Staff ID</label>
           <input type="text" class="form-control" id="staffIdInput" placeholder="Enter staff ID">
         </div>
-        <div class="form-group">
-          <label for="statusInput">Status</label>
-          <select class="form-control" id="statusInput">
-            <option value="1">Active</option>
-            <option value="0">Inactive</option>
-          </select>
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary">Edit</button>
+        </div>
+        </div>
       </form>
+    </div>
+  </div>
+</div>
 
       <!-- EDITING FORM END  -->
     </div>

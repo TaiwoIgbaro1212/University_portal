@@ -1,25 +1,36 @@
 const addCourseForm = document.getElementById('addCourseForm');
-const table = document.getElementById('table-body');
+const BASE_URL = 'http://192.168.17.220:8097';
 let courses = [];
-let departments = []
+let course = {};
+let departments = [];
+let globalCourseId;
 
 
 const renderTable = () => {
-    courses.forEach((course, index) => {
+  const table = document.getElementById('table-body');
+  courses.forEach((course, index) => {
     const row = document.createElement('tr');
     row.innerHTML = `
       <td>${index + 1}</td>
-      <td>${course.Name}</td>
-      <td>${course.UniqueId}</td>
-      <td>${course.CourseLevel}</td>
-      <td>${course.CourseSemester}</td>
-      <td>${course.Units}</td>
-      <td>${course.Code}</td>
-      <td>${course.Status == 1 ? '<div class="text-success">Active</div>' : '<div class="text-danger">Inactive<div>'}</td>
+          <td>${course.Name}</td>
+          <td>${course.UniqueId}</td>
+          <td>${course.Units}</td>
+          <td>${course.Code}</td>
+          <td>${course.Status == 1 ? '<div class="text-success">Active</div>' : '<div class="text-danger">Inactive<div>'}</td>
       <td>
-        <a href="../../html/course/editcourse.html?id=${course.courseId}" class="btn btn-primary">Edit</a>
-        <button class="btn btn-danger"  onclick="deletecourse(${course.courseId})">Delete</button>
-        <a href="../../html/course/detailcourse.html?id=${course.courseId}" class="btn btn-success">Details</a>
+      <button 
+      onclick="handleEditClick(${course.CourseId})" 
+      class="btn btn-primary"
+      data-toggle="modal"
+      data-target="#editModal">Edit</button>
+      
+      <button 
+      onclick="handleDetailClick(${course.CourseId})" 
+      class="btn btn-success"
+      data-toggle="modal"
+      data-target="#detailForm">Details</button>
+      <button class="btn btn-danger"  onclick="deletecourse(${course.courseId})">Delete</button>
+      
       </td>
     `;
     table.appendChild(row);
@@ -95,7 +106,7 @@ async function searchCourseForm(e) {
 
   if (filteredData.length < 1) {
     setTimeout(() => {
-        alert('No Such Data Exist')
+      alert('No Such Data Exist')
     }, 1000);
   }
 
@@ -120,14 +131,31 @@ async function searchCourseForm(e) {
   });
 }
 
-function deletecourse(id) {
-  console.log(id);
-  axios.delete('http://192.168.17.220:8097/api/v1/courses/' + id).then((res) => {
-    window.location.reload()
-  }).catch((err) => {
-    console.log(err);
-  })
+// function deletecourse(id) {
+//   // console.log(id);
+//   axios.delete(`${BASE_URL}/api/v1/courses/` + id).then((res) => {
+//     window.location.reload()
+//   }).catch((err) => {
+//     console.log(err);
+//   })
+// }
+
+async function deletecourse(id) {
+  try {
+    const res = await axios.delete(`${BASE_URL}/api/v1/courses/${id}`)
+    console.log(res)
+    // window.location.reload()
+  } catch (err) {
+    console.log(err.response.data.Error);
+    const container = document.querySelector('#table-wrapper');
+    const errdiv = document.createElement('div');
+    errdiv.classList = "alert alert-danger";
+    errdiv.innerText = err.response.data.Error;
+    container.prepend(errdiv);
+    setTimeout(() => errdiv.remove(), 3000);
+  }
 }
+
 
 addCourseForm.addEventListener('submit', (e) => {
   e.preventDefault();
@@ -172,5 +200,85 @@ addCourseForm.addEventListener('submit', (e) => {
 
 })
 
+//--------------EDIT SECTION ------------------------------
+
+// GET ALL OUR INPUTS READY AHEAD OF TIME 
+const departmentIdInput = document.querySelector('#departmentId');
+
+// Get information from the id parameter
+function handleEditClick(courseId) {
+
+  // get particular course Of study to edit
+  const course = courses.find(course => course.CourseId === courseId);
+
+  //fill in form values with department information
+  populateEditForm(course);
+  globalCourseId = courseId;
+}
+
+const courseIdInput = document.querySelector('#courseId');
+
+// Get information from the id parameter
+function populateEditForm(course) {
+  const editForm = document.getElementById('editingForm')
+  Array.from(editForm.elements).forEach((element) => {
+
+    if (element.name === 'Status') {
+      element.checked = course[element.name] === 1 ? true : false;
+    }
+    if (course.hasOwnProperty(element.name)) {
+      element.value = typeof department[element.name] === 'string' ? course[element.name].trim() : course[element.name];
+    }
+  })
+}
+// SUBMIT FORM TO EDIT THE DB
+const editForm = document.querySelector('#editingForm');
+editingForm.addEventListener('submit', async (e) => {
+  e.preventDefault();
+
+  // GET FORM DATA AS AN OBJECT
+  const formData = new FormData(editForm);
+  const data = Object.fromEntries(formData.entries());
+
+  // SET STATUS TO EITHER 1 OR 0
+  data.Status = data.Status ? 1 : 0;
+
+  // GET GLOBAL FACULTYID
+  data.CourseId = globalCourseId;
+
+  //RESET GLOBAL FACULTYID
+  globalCourseId = undefined;
+
+  validate.isChosen(data.Name, 3, 50, 'Name');
+  validate.length(data.Code, 3, 50, 'Code');
+  validate.length(data.UniqueId, 3, 10, 'UniqueId');
+  validate.isNumber(data.Units, "Units");
+  validate.mininteger(data.Units, 1, "Units");
+  validate.isNumber(data.CourseLevel, "CourseLevel");
+  validate.mininteger(data.CourseLevel, 1, "CourseLevel")
+  validate.isNumber(data.CourseSemester, "CourseSemester");
+  validate.mininteger(data.CourseSemester, 1, "CourseSemester")
 
 
+  data.Units = Number(data.Units);
+  data.CourseLevel = Number(data.CourseLevel);
+  data.CourseSemester = Number(data.CourseSemester);
+
+  // CHECK FOR ERROR BEFORE PUTING
+  if (validate._errors.length > 0) {
+    alert(validate._errors[0])
+  } else {
+    // Make put request
+    axios.put(`${BASE_URL}/api/v1/courses/`, data).then((result) => {
+      console.log(result);
+
+
+      const index = departments.findIndex(course => course.CourseId === data.CourseId);
+      departments[index] = data;
+      renderTable()
+      $(editModal).modal('hide')
+    }).catch((err) => {
+      console.log(err);
+    });
+  }
+})

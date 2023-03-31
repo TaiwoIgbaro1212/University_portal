@@ -281,6 +281,99 @@
         </div>
         <!-- End of Modal for Lecturer -->
 
+              <!---------------- EDIT FORM ----------------->
+
+      <div class="modal" tabindex="-1" role="dialog" id="editModal">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Edit Lecturer</h5>
+              <button
+                type="button"
+                class="close"
+                data-dismiss="modal"
+                aria-label="Close"
+              >
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+      <form id="editingForm">
+        <div class="row">
+          <div class="col-md-6">
+        <div class="form-group">
+          <label for="lecturerIdInput">Lecturer ID</label>
+          <input type="text" class="form-control" name="LecturerId" disabled="true" id="lecturerIdInput" placeholder="Enter lecturer ID">
+        </div>
+        <div class="form-group">
+          <label for="departmentIdInput">Department ID</label>
+          <input type="text" class="form-control" name="DepartmentId" disabled="true" id="departmentIdInput" placeholder="Enter department ID">
+        </div>
+        <div class="form-group">
+          <label for="firstNameInput">First Name</label>
+          <input type="text" class="form-control" value="" id="firstNameInput" placeholder="Enter lecturer first name">
+        </div>
+        <div class="form-group">
+          <label for="surnameInput">Surname</label>
+          <input type="text" class="form-control" name="SurnameId" value="" id="surnameInput" placeholder="Enter lecturer surname">
+        </div>
+        <div class="form-group">
+          <label for="statusInput">Status</label>
+          <input
+            type="checkbox"
+            class="form-check-inline"
+            id="statusInput"
+            name="Status"
+          />
+        </div>
+        </div>
+        <div class="col-md-6">
+        
+        <div class="form-group">
+          <label for="otherNameInput">Other Name</label>
+          <input type="text" class="form-control" value="" id="otherNameInput" placeholder="Enter lecturer other name">
+        </div>
+        <div class="form-group">
+          <label for="staffIdInput">Staff ID</label>
+          <input type="text" class="form-control" id="staffIdInput" placeholder="Enter staff ID">
+        </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Edit</button>
+        </div>
+        </div>
+      </form>
+    </div>
+  </div>
+      </div>
+              <!-- EDITING FORM END  -->
+
+ <!--  DETAILS  -->
+ <div class="modal" tabindex="-1" id="detailsModal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button
+          type="button"
+          class="close"
+          window.location.reload()
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div>
+        <p id="lecfirstName"></p>  
+        <p id="lecsurname"></p>
+        <p id="lecotherName"></p>
+        <p id="lecstaffId">Staff Id:</p>
+      </div>
+      <a href="./lecturer.html" class="btn btn-primary">Back</a>
+      </div>
+    </div>          
+</div>
+<!-- END OF DETAILS  -->
+
         <!-- Modal for Search -->
         <div class="modal" tabindex="-1" role="dialog" id="searchModal">
           <div class="modal-dialog" role="document">
@@ -529,7 +622,7 @@
                     <div class="dropdown-list-image mr-3">
                       <img
                         class="rounded-circle"
-                        src="../Assets/img/undraw_profile_1.svg"
+                        src="../../../Assets/img/undraw_profile_1.svg"
                         alt="..."
                       />
                       <div class="status-indicator bg-success"></div>
@@ -570,7 +663,7 @@
                   >
                   <img
                     class="img-profile rounded-circle"
-                    src="../Assets/img/undraw_profile.svg"
+                    src="../../../Assets/img/undraw_profile.svg"
                   />
                 </a>
                 <!-- Dropdown - User Information -->
@@ -636,6 +729,7 @@
 
               <!-- End of search bar -->
             </div>
+
             <div class="container-fluid">
               <table class="table table-bordered">
                 <thead>

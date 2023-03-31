@@ -181,52 +181,148 @@
           </div>
         </ul>
         <!-- End of Sidebar -->
-    <div id="content-wrapper" class="d-flex flex-column pt-3">
-      <h3 class="text-center title">Course of Study Details</h3>
-      <!-- EDITING FORM START  -->
-      <form id="editingForm" class="editing_form">
-        <div class="form-group">
-            <label for="courseOfStudyIdInput">Course of Study ID</label>
-            <input type="text" class="form-control" disabled="true" id="courseOfStudyIdInput" placeholder="Enter course 0f study ID">
-          </div>
+        <div class="modal" tabindex="-1" role="dialog" id="editModal">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">Details Course of Study</h5>
+                <button
+                  type="button"
+                  class="close"
+                  data-dismiss="modal"
+                  aria-label="Close"
+                >
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <form id="detailForm">
+                  <div class="row">
+                    <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="departmentIdInput">Department Name</label>
+                    <select
+                      class="form-control departmentSelect"
+                      name="DepartmentId"
+                      id="departmentId"
+                    >
+                      <option value="">--select department--</option>
+                    </select>
+                  </div>
           <div class="form-group">
-            <label for="departmentIdInput">Department ID</label>
-            <input type="text" class="form-control" disabled="true" id="departmentIdInput" placeholder="Enter department ID">
-          </div>
+                    <label for="courseOfStudyIdInput">Course of Study</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      value=""
+                      name="CourseOfStudyId"
+                      id="courseOfStudyId"
+                      placeholder="Enter your course of study"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="nameInput"> Name</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      value=""
+                      id="nameInput"
+                      name="Name"
+                      placeholder="Enter name"
+                    />
+                  </div>
+           <div class="form-group">
+                    <label for="shortNameInput">Short Name</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      value=""
+                      id="shortNameInput"
+                      name="ShortName"
+                      placeholder="Enter short name"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="uniqueIdInput">Unique ID</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="uniqueIdInput"
+                      name="UniqueId"
+                      placeholder="Enter unique ID"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="statusInput">Status</label>
+                    <input
+                      type="checkbox"
+                      class="form-check-inline"
+                      id="statusInput"
+                      name="Status"
+                    />
+                  </div>
+                  </div>
+                  <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="awardInput">Award</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="awardInput"
+                      name="Award"
+                      placeholder="Enter award"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="uniqueIdInput">Unique ID</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="uniqueIdInput"
+                      name="UniqueId"
+                      placeholder="Enter unique ID"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="advisorInput">Advisor</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="advisorInput"
+                      name="Advisor"
+                      placeholder="Enter advisor"
+                    />
+                  </div>
           <div class="form-group">
-            <label for="nameInput">Name</label>
-            <input type="text" class="form-control" disabled="true" value="" id="nameInput" placeholder="Enter course 0f study">
-          </div>
+                    <label for="durationInput">Duration</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="durationInput"
+                      name="Duration"
+                      placeholder="Enter duration"
+                    />
+                  </div>
           <div class="form-group">
-            <label for="shortNameInput">Short Name</label>
-            <input type="text" class="form-control" disabled="true" value="" id="shortNameInput" placeholder="Enter Short Name">
+                    <label for="requiredCreditUnitsInput">Required Credit Units</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="requiredCreditUnitsInput"
+                      name="RequiredCreditUnits"
+                      placeholder="Enter Required Credit Units"
+                    />
+                  </div>
+                  
+                  <button type="submit" class="btn btn-primary">Edit</button>
+                </div>
+              </div>
+                </form>
+              </div>
+            </div>
           </div>
-          <div class="form-group">
-            <label for="uniqueIdInput">Unique ID</label>
-            <input type="text" class="form-control" disabled="true" id="uniqueIdInput" placeholder="Enter unique ID">
-          </div>
-          <div class="form-group">
-            <label for="awardInput">Award</label>
-            <input type="text" class="form-control" disabled="true" value="" id="awardInput" placeholder="Enter award">
-          </div>
-          <div class="form-group">
-            <label for="durationInput">Duration</label>
-            <input type="text" class="form-control" disabled="true" value="" id="durationInput" placeholder="Enter duration">
-          </div>
-          <div class="form-group">
-            <label for="requiredCreditUnitsInput">Required Credit Units</label>
-            <input type="text" class="form-control" disabled="true" value="" id="requiredCreditUnitsInput" placeholder="Enter Required Credit Units">
-          </div>
-          <div class="form-group">
-            <label for="advisorInput">Advisor</label>
-            <input type="text" class="form-control" disabled="true" value="" id="advisorInput" placeholder="Enter advisor name">
-          </div>
-        <div class="form-group">
-          <label for="statusInput">Status</label>
-          <input  disabled="true" class="form-control" id="statusInput" />
+          <!--------------- EDITING FORM END  -------------------->
         </div>
-        <a href="./courseOfStudy.html" class="btn btn-primary">Back</a>
-    </div>
 
       <!-- EDITING FORM END  -->
     </div>

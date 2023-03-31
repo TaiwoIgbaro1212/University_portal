@@ -1,14 +1,12 @@
-// import validate from '../Validate.js';
-
 let FACULTIES = []
-const BASE_URL = 'http://192.168.17.5:8097';
+const BASE_URL = 'http://192.168.17.220:8097';
 let globalFacultyId;
 
 
 const addFacultyForm = document.getElementById('addFacultyForm');
 
 const renderTable = () => {
-  console.log('render table called');
+  // console.log('render table called');
   const table = document.getElementById('table-body');
   const filteredData = FACULTIES;
   const tableContent = filteredData.map((faculty, index) => {
@@ -50,64 +48,72 @@ document.addEventListener('DOMContentLoaded', populate);
 
 
 // SEARCH AREA
-const searchModalForm = document.querySelector('#searchModalForm');
-const searchModal = document.getElementById("searchModal");
-const searchModalEvent = new MouseEvent('click', {
+// const searchModalForm = document.querySelector('#searchModalForm');
+// const searchModal = document.getElementById("searchModal");
+// const searchModalEvent = new MouseEvent('click', {
 
-  view: window,
-  bubbles: true,
-  cancelable: true
-});
+//   view: window,
+//   bubbles: true,
+//   cancelable: true
+// });
 
 
-searchModalForm.addEventListener('submit', searchFacultyForm)
-async function searchFacultyForm(e) {
-  e.preventDefault()
-  table.innerHTML = null
+// searchModalForm.addEventListener('submit', searchFacultyForm)
+// async function searchFacultyForm(e) {
+//   e.preventDefault()
+//   table.innerHTML = null
 
-  const formData = new FormData(searchModalForm);
-  const searchFormData = Object.fromEntries(formData.entries());
-  if (searchFormData.Status) {
-    searchFormData.Status = 1;
-  } else {
-    searchFormData.Status = 0;
-  }
-  console.log(searchFormData);
+//   const formData = new FormData(searchModalForm);
+//   const searchFormData = Object.fromEntries(formData.entries());
+//   if (searchFormData.Status) {
+//     searchFormData.Status = 1;
+//   } else {
+//     searchFormData.Status = 0;
+//   }
+//   console.log(searchFormData);
 
-  const fetchFilter = await axios.post(`${BASE_URL}/api/v1/faculties/`, searchFormData);
-  const resultFilter = await fetchFilter
-  const filteredData = resultFilter.data
+//   const fetchFilter = await axios.post(`${BASE_URL}/api/v1/faculties/`, searchFormData);
+//   const resultFilter = await fetchFilter
+//   const filteredData = resultFilter.data
 
-  if (filteredData.length < 1) {
-    setTimeout(() => {
-      alert('No Such Data Exist')
-    }, 1000);
-  }
+//   if (filteredData.length < 1) {
+//     setTimeout(() => {
+//       alert('No Such Data Exist')
+//     }, 1000);
+//   }
 
-  filteredData.forEach((faculty, index) => {
-    const row = document.createElement('tr');
-    row.innerHTML = `
-      <td>${index + 1}</td>
-      <td>${faculty.Name}</td>
-      <td>${faculty.UniqueId}</td>
-      <td>${faculty.Code}</td>
-      <td>${faculty.Status == 1 ? '<div class="text-success">Active</div>' : '<div class="text-danger">Inactive<div>'}</td>
-      <td>
-        <button onclick="getFacultyById(${faculty.FacultyId})" class="btn btn-primary">Edit</button>
-        <button class="btn btn-danger"  onclick="deletefaculty(${faculty.FacultyId})">Delete</button>
-        <a href="../../html/faculty/detailfaculty.html?id=${faculty.FacultyId}" class="btn btn-success">Details</a>
-      </td>
-    `;
-    table.appendChild(row);
-  });
-}
+//   filteredData.forEach((faculty, index) => {
+//     const row = document.createElement('tr');
+//     row.innerHTML = `
+//       <td>${index + 1}</td>
+//       <td>${faculty.Name}</td>
+//       <td>${faculty.UniqueId}</td>
+//       <td>${faculty.Code}</td>
+//       <td>${faculty.Status == 1 ? '<div class="text-success">Active</div>' : '<div class="text-danger">Inactive<div>'}</td>
+//       <td>
+//         <button onclick="getFacultyById(${faculty.FacultyId})" class="btn btn-primary">Edit</button>
+//         <button class="btn btn-danger"  onclick="deletefaculty(${faculty.FacultyId})">Delete</button>
+//         <a href="../../html/faculty/detailfaculty.html?id=${faculty.FacultyId}" class="btn btn-success">Details</a>
+//       </td>
+//     `;
+//     table.appendChild(row);
+//   });
+// }
 
-function deletefaculty(id) {
-  axios.delete(`${BASE_URL}/api/v1/faculties/${id}`).then((res) => {
+async function deletefaculty(id) {
+  try {
+    const res = await axios.delete(`${BASE_URL}/api/v1/faculties/${id}`)
+    console.log(res)
     window.location.reload()
-  }).catch((err) => {
-    console.log(err);
-  })
+  } catch (err) {
+    console.log(err.response.data.Error);
+    const container = document.querySelector('#table-wrapper');
+    const errdiv = document.createElement('div');
+    errdiv.classList = "alert alert-danger";
+    errdiv.innerText = err.response.data.Error;
+    container.prepend(errdiv);
+    setTimeout(() => errdiv.remove(), 3000);
+  }
 }
 
 
@@ -135,7 +141,7 @@ addFacultyForm.addEventListener('submit', (e) => {
   } else {
     console.log(data);
     // Make post request
-    axios.post('http://192.168.17.220:8097/api/v1/faculties/add', data).then((result) => {
+    axios.post(`${BASE_URL}/api/v1/faculties/add`, data).then((result) => {
       console.log(result);
       window.location.reload()
     }).catch((err) => {
@@ -165,7 +171,6 @@ function handleEditClick(facultyId) {
 
   // fill in form values with faculty information
   populateEditForm(faculty);
-
 
   globalFacultyId = facultyId;
 }

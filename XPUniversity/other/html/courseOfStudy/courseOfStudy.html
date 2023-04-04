@@ -213,105 +213,105 @@
                 <form id="addCourseOfStudyForm">
                   <div class="row">
                     <div class="col-md-6">
-                  <div class="form-group">
-                    <label for="department">Department ID</label>
-                    <input
-                      type="text"
-                      class="form-control"
-                      name="DepartmentId"
-                      id="department"
-                      placeholder="e.g. 3"
-                    />
-                  </div>
-                  <div class="form-group">
-                    <label for="name">Name</label>
-                    <input
-                      type="text"
-                      class="form-control"
-                      name="Name"
-                      id="name"
-                      placeholder="e.g. Insurance"
-                    />
-                  </div>
-                  <div class="form-group">
-                    <label for="shortName">Short Name</label>
-                    <input
-                      type="text"
-                      class="form-control"
-                      name="ShortName"
-                      id="shortName"
-                      placeholder="e.g. INS"
-                    />
-                  </div>
-                  <div class="form-group">
-                    <label for="uniqueId">Unique ID</label>
-                    <input
-                      type="text"
-                      class="form-control"
-                      name="UniqueId"
-                      id="uniqueId"
-                      placeholder="e.g TM11"
-                    />
-                  </div>
-                  </div>
-                    <div class="col-md-6">
-                  <div class="form-group">
-                    <label for="award">Award</label>
-                    <input
-                      type="text"
-                      class="form-control"
-                      name="Award"
-                      id="award"
-                      placeholder="e.g. B.SC. (Honors) Law"
-                    />
-                  </div>
-                  <div class="form-group">
-                    <label for="duration">Duration</label>
-                    <input
-                      type="text"
-                      class="form-control"
-                      name="Duration"
-                      id="duration"
-                      placeholder="e.g. 2"
-                    />
-                  </div>
-                  <div class="form-group">
-                    <label for="requiredCreditUnits"
-                      >Required Credit Units</label
-                    >
-                    <input
-                      type="text"
-                      class="form-control"
-                      name="RequiredCreditUnits"
-                      id="requiredCreditUnits"
-                      placeholder="e.g. 120"
-                    />
-                  </div>
-                  <div class="form-group">
-                    <label for="advisor">Advisor</label>
-                    <input
-                      type="text"
-                      class="form-control"
-                      name="Advisor"
-                      id="advisor"
-                      placeholder="e.g. Prof. Olusegun"
-                    />
-                  </div>
-                  <div class="form-group">
-                    <div class="form-check">
-                      <input
-                        class="form-check-input"
-                        name="Status"
-                        type="checkbox"
-                        id="status"
-                        value="Active"
-                      />
-                      <label class="form-check-label" for="status">
-                        Is active
-                      </label>
+                      <div class="form-group">
+                        <label for="department">Department ID</label>
+                        <input
+                          type="text"
+                          class="form-control"
+                          name="DepartmentId"
+                          id="department"
+                          placeholder="e.g. 3"
+                        />
+                      </div>
+                      <div class="form-group">
+                        <label for="name">Name</label>
+                        <input
+                          type="text"
+                          class="form-control"
+                          name="Name"
+                          id="name"
+                          placeholder="e.g. Insurance"
+                        />
+                      </div>
+                      <div class="form-group">
+                        <label for="shortName">Short Name</label>
+                        <input
+                          type="text"
+                          class="form-control"
+                          name="ShortName"
+                          id="shortName"
+                          placeholder="e.g. INS"
+                        />
+                      </div>
+                      <div class="form-group">
+                        <label for="uniqueId">Unique ID</label>
+                        <input
+                          type="text"
+                          class="form-control"
+                          name="UniqueId"
+                          id="uniqueId"
+                          placeholder="e.g TM11"
+                        />
+                      </div>
                     </div>
-                  </div>
-                  </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="award">Award</label>
+                        <input
+                          type="text"
+                          class="form-control"
+                          name="Award"
+                          id="award"
+                          placeholder="e.g. B.SC. (Honors) Law"
+                        />
+                      </div>
+                      <div class="form-group">
+                        <label for="duration">Duration</label>
+                        <input
+                          type="text"
+                          class="form-control"
+                          name="Duration"
+                          id="duration"
+                          placeholder="e.g. 2"
+                        />
+                      </div>
+                      <div class="form-group">
+                        <label for="requiredCreditUnits"
+                          >Required Credit Units</label
+                        >
+                        <input
+                          type="text"
+                          class="form-control"
+                          name="RequiredCreditUnits"
+                          id="requiredCreditUnits"
+                          placeholder="e.g. 120"
+                        />
+                      </div>
+                      <div class="form-group">
+                        <label for="advisor">Advisor</label>
+                        <input
+                          type="text"
+                          class="form-control"
+                          name="Advisor"
+                          id="advisor"
+                          placeholder="e.g. Prof. Olusegun"
+                        />
+                      </div>
+                      <div class="form-group">
+                        <div class="form-check">
+                          <input
+                            class="form-check-input"
+                            name="Status"
+                            type="checkbox"
+                            id="status"
+                            value="Active"
+                          />
+                          <label class="form-check-label" for="status">
+                            Is active
+                          </label>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                   <button type="submit" class="btn btn-primary float-right">
                     Add
@@ -341,6 +341,16 @@
               </div>
               <div class="modal-body">
                 <form id="searchModalForm">
+                  <div class="form-group">
+                    <label for="departmentIdInput">Department Name</label>
+                    <select
+                      class="form-control departmentSelect"
+                      name="DepartmentId"
+                      id="departmentId"
+                    >
+                      <option value="">--select department--</option>
+                    </select>
+                  </div>
                   <div class="form-group">
                     <label for="name">Name</label>
                     <input
@@ -414,19 +424,6 @@
                         >
                           <option value="">--select department--</option>
                         </select>
-                      </div>
-                      <div class="form-group">
-                        <label for="courseOfStudyIdInput"
-                          >Course of Study</label
-                        >
-                        <input
-                          type="text"
-                          class="form-control"
-                          value=""
-                          name="CourseOfStudyId"
-                          id="courseOfStudyId"
-                          placeholder="Enter your course of study"
-                        />
                       </div>
                       <div class="form-group">
                         <label for="nameInput"> Name</label>
@@ -553,7 +550,7 @@
                 </button>
               </div>
               <div>
-                <p id="cosName"></p>  
+                <p id="cosName"></p>
                 <p id="cosShortName"></p>
                 <p id="cosuniqueId">Unique Id:</p>
                 <p id="cosAward"></p>
@@ -561,8 +558,8 @@
                 <p id="cosrequiredCreditUnits"></p>
                 <p id="cosadvisor"></p>
               </div>
-              </div>
-            </div>          
+            </div>
+          </div>
         </div>
         <!-- END OF DETAILS  -->
 

@@ -1,13 +1,13 @@
 // GET ALL OUR INPUTS READY AHEAD OF TIME 
-const lecturerIdInput = document.querySelector('#lecturerIdInput');
-const departmentIdInput = document.querySelector('#departmentIdInput');
-const surnameInput = document.querySelector('#surnameInput');
-const firstNameInput = document.querySelector('#firstNameInput');
-const otherNameInput = document.querySelector('#otherNameInput');
-const staffIdInput = document.querySelector('#staffIdInput');
-const statusInput = document.querySelector('#statusInput');
+// const lecturerIdInput = document.querySelector('#lecturerIdInput');
+// const departmentIdInput = document.querySelector('#departmentIdInput');
+// const surnameInput = document.querySelector('#surnameInput');
+// const firstNameInput = document.querySelector('#firstNameInput');
+// const otherNameInput = document.querySelector('#otherNameInput');
+// const staffIdInput = document.querySelector('#staffIdInput');
+// const statusInput = document.querySelector('#statusInput');
 
-const editingForm = document.querySelector('#editingForm');
+// const editingForm = document.querySelector('#editingForm');
 
 // GET PARAMETERS OR ID FROM THE CURRENT FACULTY TO EDITING FORM
 // Suppose the URL is http://example.com?param=value1&param2=value2
@@ -19,21 +19,21 @@ lecturerIdInput.value = paramValue;
 
 
 // Get information from the id parameter
-const getLecturerById = async () => {
-    const dataObj = await axios.get(`http://192.168.17.220:8097/api/v1/lecturers/${lecturerIdInput.value}`)
-    const data = await dataObj.data
-    console.log(data.StaffIdInput);
-    surnameInput.value  = data.Surname;
-    departmentIdInput.value  = data.DepartmentId;
-    firstNameInput.value  = data.FirstName;
-    otherNameInput.value  = data.OtherName;
-    staffIdInput.value  = data.StaffId;
-    statusInput.value  = data.Status;
-} 
+// const getLecturerById = async () => {
+//     const dataObj = await axios.get(`http://192.168.17.220:8097/api/v1/lecturers/${lecturerIdInput.value}`)
+//     const data = await dataObj.data
+//     console.log(data.StaffIdInput);
+//     surnameInput.value  = data.Surname;
+//     departmentIdInput.value  = data.DepartmentId;
+//     firstNameInput.value  = data.FirstName;
+//     otherNameInput.value  = data.OtherName;
+//     staffIdInput.value  = data.StaffId;
+//     statusInput.value  = data.Status;
+// } 
 
 
 
-document.addEventListener('DOMContentLoaded', getLecturerById);
+// document.addEventListener('DOMContentLoaded', getLecturerById);
 
 
 

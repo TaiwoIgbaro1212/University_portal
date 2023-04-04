@@ -389,7 +389,7 @@
                     <input
                       type="text"
                       class="form-control"
-                      id="unitsInput"
+                      id="uniqueIdInput"
                       placeholder="Enter Units"
                     />
                   </div>
@@ -398,7 +398,7 @@
                     <input
                       type="text"
                       class="form-control"
-                      id="awardInput"
+                      id="unitsInput"
                       placeholder="Enter award"
                     />
                   </div>
@@ -448,16 +448,16 @@
               </div>
               <div class="modal-body">
                 <form id="searchModalForm">
-                  <!-- <div class="form-group">
-                    <label for="deptId">Department ID</label>
-                    <input
-                      type="text"
-                      class="form-control"
-                      name="deptId"
-                      id="deptId"
-                      placeholder="e.g. 02"
-                    />
-                  </div> -->
+                <div class="form-group">
+                    <label for="departmentIdInput">Department Name</label>
+                    <select
+                      class="form-control departmentSelect"
+                      name="DepartmentId"
+                      id="departmentId"
+                    >
+                      <option value="">--select department--</option>
+                    </select>
+                  </div>
                   <div class="form-group">
                     <label for="facultyName">Name</label>
                     <input

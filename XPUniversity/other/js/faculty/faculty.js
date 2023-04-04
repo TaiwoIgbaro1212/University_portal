@@ -1,114 +1,66 @@
-let FACULTIES = []
-const BASE_URL = 'http://192.168.17.220:8097';
+let FACULTIES = [];
+const BASE_URL = "http://192.168.17.220:8097";
 let globalFacultyId;
+const table = document.getElementById("table-body");
+let show_status;
 
-
-const addFacultyForm = document.getElementById('addFacultyForm');
+const addFacultyForm = document.getElementById("addFacultyForm");
 
 const renderTable = () => {
   // console.log('render table called');
-  const table = document.getElementById('table-body');
+  
   const filteredData = FACULTIES;
-  const tableContent = filteredData.map((faculty, index) => {
-    return `
+  const tableContent = filteredData
+    .map((faculty, index) => {
+      return `
       <tr>
       <td>${index + 1}</td>
       <td>${faculty.Name}</td>
       <td>${faculty.UniqueId}</td>
       <td>${faculty.Code}</td>
-      <td>${faculty.Status == 1 ? '<div class="text-success">Active</div>' : '<div class="text-danger">Inactive<div>'}</td>
+      <td>${
+        faculty.Status == 1
+          ? '<div class="text-success">Active</div>'
+          : '<div class="text-danger">Inactive<div>'
+      }</td>
       <td>
         <button 
           onclick="handleEditClick(${faculty.FacultyId})" 
           class="btn btn-primary"
           data-toggle="modal"
           data-target="#editModal">Edit</button>
-        <button class="btn btn-danger"  onclick="deletefaculty(${faculty.FacultyId})">Delete</button>
+        <button class="btn btn-danger"  onclick="deletefaculty(${
+          faculty.FacultyId
+        })">Delete</button>
       </td>
       </tr>
     `;
-  }).join('');
+    })
+    .join("");
   table.innerHTML = tableContent;
-}
+};
 const populate = async () => {
   try {
     const response = await axios.get(`${BASE_URL}/api/v1/faculties`);
     FACULTIES = response.data;
     filteredData = response.data;
-    renderTable()
+    renderTable();
   } catch (error) {
     console.log(error);
   }
-}
+};
 
-document.addEventListener('DOMContentLoaded', populate);
-
-
-
-
-
-// SEARCH AREA
-// const searchModalForm = document.querySelector('#searchModalForm');
-// const searchModal = document.getElementById("searchModal");
-// const searchModalEvent = new MouseEvent('click', {
-
-//   view: window,
-//   bubbles: true,
-//   cancelable: true
-// });
-
-
-// searchModalForm.addEventListener('submit', searchFacultyForm)
-// async function searchFacultyForm(e) {
-//   e.preventDefault()
-//   table.innerHTML = null
-
-//   const formData = new FormData(searchModalForm);
-//   const searchFormData = Object.fromEntries(formData.entries());
-//   if (searchFormData.Status) {
-//     searchFormData.Status = 1;
-//   } else {
-//     searchFormData.Status = 0;
-//   }
-//   console.log(searchFormData);
-
-//   const fetchFilter = await axios.post(`${BASE_URL}/api/v1/faculties/`, searchFormData);
-//   const resultFilter = await fetchFilter
-//   const filteredData = resultFilter.data
-
-//   if (filteredData.length < 1) {
-//     setTimeout(() => {
-//       alert('No Such Data Exist')
-//     }, 1000);
-//   }
-
-//   filteredData.forEach((faculty, index) => {
-//     const row = document.createElement('tr');
-//     row.innerHTML = `
-//       <td>${index + 1}</td>
-//       <td>${faculty.Name}</td>
-//       <td>${faculty.UniqueId}</td>
-//       <td>${faculty.Code}</td>
-//       <td>${faculty.Status == 1 ? '<div class="text-success">Active</div>' : '<div class="text-danger">Inactive<div>'}</td>
-//       <td>
-//         <button onclick="getFacultyById(${faculty.FacultyId})" class="btn btn-primary">Edit</button>
-//         <button class="btn btn-danger"  onclick="deletefaculty(${faculty.FacultyId})">Delete</button>
-//         <a href="../../html/faculty/detailfaculty.html?id=${faculty.FacultyId}" class="btn btn-success">Details</a>
-//       </td>
-//     `;
-//     table.appendChild(row);
-//   });
-// }
+document.addEventListener("DOMContentLoaded", populate);
 
 async function deletefaculty(id) {
   try {
-    const res = await axios.delete(`${BASE_URL}/api/v1/faculties/${id}`)
-    console.log(res)
-    window.location.reload()
+    const res = await axios.delete(`${BASE_URL}/api/v1/faculties/${id}`);
+    console.log(res);
+    window.location.reload();
   } catch (err) {
     console.log(err.response.data.Error);
-    const container = document.querySelector('#table-wrapper');
-    const errdiv = document.createElement('div');
+    const container = document.querySelector("#table-wrapper");
+    const errdiv = document.createElement("div");
     errdiv.classList = "alert alert-danger";
     errdiv.innerText = err.response.data.Error;
     container.prepend(errdiv);
@@ -116,8 +68,7 @@ async function deletefaculty(id) {
   }
 }
 
-
-addFacultyForm.addEventListener('submit', (e) => {
+addFacultyForm.addEventListener("submit", (e) => {
   e.preventDefault();
   const formData = new FormData(addFacultyForm);
   const data = Object.fromEntries(formData.entries());
@@ -131,9 +82,9 @@ addFacultyForm.addEventListener('submit', (e) => {
   console.log(data);
 
   const validate = new Validate();
-  validate.length(data.Name, 3, 50, 'Name');
-  validate.length(data.UniqueId, 3, 10, 'UniqueId');
-  validate.length(data.Code, 3, 10, 'Code');
+  validate.length(data.Name, 3, 50, "Name");
+  validate.length(data.UniqueId, 3, 10, "UniqueId");
+  validate.length(data.Code, 3, 10, "Code");
 
   if (validate.errors.length > 0) {
     alert(validate.errors[0]);
@@ -141,33 +92,23 @@ addFacultyForm.addEventListener('submit', (e) => {
   } else {
     console.log(data);
     // Make post request
-    axios.post(`${BASE_URL}/api/v1/faculties/add`, data).then((result) => {
-      console.log(result);
-      window.location.reload()
-    }).catch((err) => {
-      console.log(err);
-    });
+    axios
+      .post(`${BASE_URL}/api/v1/faculties/add`, data)
+      .then((result) => {
+        console.log(result);
+        window.location.reload();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
+});
 
-})
-
-// ==================================EDIT FORM==============================
-
-
-
-// GET PARAMETERS OR ID FROM THE CURRENT FACULTY TO EDITING FORM
-// Suppose the URL is http://example.com?param=value1&param2=value2
-// const params = new URLSearchParams(window.location.search);
-// // Get the value of the 'id' parameter
-// const paramValue = params.get('id');
-// facultyIdInput.value = paramValue;
-
-
+// ===============EDIT FORM=========================
 // Get information from the id parameter
 function handleEditClick(facultyId) {
-
   // get particular faculty to edit
-  const faculty = FACULTIES.find(faculty => faculty.FacultyId === facultyId);
+  const faculty = FACULTIES.find((faculty) => faculty.FacultyId === facultyId);
 
   // fill in form values with faculty information
   populateEditForm(faculty);
@@ -175,21 +116,22 @@ function handleEditClick(facultyId) {
   globalFacultyId = facultyId;
 }
 
-
 function populateEditForm(faculty) {
-  const editForm = document.getElementById('editingForm')
+  const editForm = document.getElementById("editingForm");
   Array.from(editForm.elements).forEach((element) => {
-    if (element.name === 'Status') {
+    if (element.name === "Status") {
       element.checked = faculty.Status === 1 ? true : false;
       return;
     }
-    element.value = faculty.hasOwnProperty(element.name) ? faculty[element.name].trim() : ''
+    element.value = faculty.hasOwnProperty(element.name)
+      ? faculty[element.name].trim()
+      : "";
   });
 }
 
 // GET FORM AND ADD SUBMIT EVENT LISTENER
-const editForm = document.querySelector('#editingForm');
-editingForm.addEventListener('submit', async (e) => {
+const editForm = document.querySelector("#editingForm");
+editingForm.addEventListener("submit", async (e) => {
   // STOP DEFAULT SUBMITTING BEHAVIOUR
   e.preventDefault();
 
@@ -207,34 +149,90 @@ editingForm.addEventListener('submit', async (e) => {
   globalFacultyId = undefined;
 
   // VALIDATE NAME, UNIQUEiD AND CODE
-  const validate = new Validate
-  validate.length(data.Name, 3, 50, 'Name');
-  validate.length(data.UniqueId, 3, 10, 'UniqueId');
-  validate.length(data.Code, 2, 10, 'Code');
+  const validate = new Validate();
+  validate.length(data.Name, 3, 50, "Name");
+  validate.length(data.UniqueId, 3, 10, "UniqueId");
+  validate.length(data.Code, 2, 10, "Code");
 
   // CHECK FOR ERROR BEFORE PUTING
   if (validate._errors.length > 0) {
-    return alert(validate._errors[0])
+    return alert(validate._errors[0]);
   }
 
   try {
     // MAKE PUT REQUEST
-    const result = await axios.put(`${BASE_URL}/api/v1/faculties`, data)
-    console.log(result)
+    const result = await axios.put(`${BASE_URL}/api/v1/faculties`, data);
+    console.log(result);
 
     // GET INDEX OF FACULTY CHANGED
-    const index = FACULTIES.findIndex(faculty => faculty.FacultyId === data.FacultyId);
+    const index = FACULTIES.findIndex(
+      (faculty) => faculty.FacultyId === data.FacultyId
+    );
 
     // REPLACE THAT FACULTY WITH NEW DATA
     FACULTIES[index] = data;
 
     // RENDER TABLE WITH UPDATED FACULTY
-    renderTable()
+    renderTable();
 
     // HIDE THE MODAL
-    $(editModal).modal('hide')
+    $(editModal).modal("hide");
   } catch (err) {
     console.log(err);
   }
+});
 
-}); 
+// ==========SEARCH=========
+{
+  const items = document.querySelectorAll("[data-check]");
+  items.forEach((item) => {
+    item.addEventListener("click", (e) => {
+      e.stopPropagation();
+      // console.log(document.querySelector("input[type=radio]:checked").value);
+    });
+  });
+}
+
+const activeStatus = () => {
+  show_status = document.querySelector("input[type=radio]:checked").value;
+  console.log(document.querySelector("input[type=radio]:checked").value);
+}
+
+const searchFilter = document.getElementById("searchFilter");
+searchFilter.addEventListener("submit", async (e)=>{
+  e.preventDefault();
+  table.innerHTML = "";
+  let searchObj =  {
+    Name: searchFilter.Name.value,
+    Status: show_status
+  }
+  const result = await axios.post(`${BASE_URL}/api/v1/faculties`, searchObj);
+      const tableContent = result.data
+        .map((faculty, index) => {
+          return `
+      <tr>
+      <td>${index + 1}</td>
+      <td>${faculty.Name}</td>
+      <td>${faculty.UniqueId}</td>
+      <td>${faculty.Code}</td>
+      <td>${
+        faculty.Status == 1
+          ? '<div class="text-success">Active</div>'
+          : '<div class="text-danger">Inactive<div>'
+      }</td>
+      <td>
+        <button 
+          onclick="handleEditClick(${faculty.FacultyId})" 
+          class="btn btn-primary"
+          data-toggle="modal"
+          data-target="#editModal">Edit</button>
+        <button class="btn btn-danger"  onclick="deletefaculty(${
+          faculty.FacultyId
+        })">Delete</button>
+      </td>
+      </tr>
+    `;
+        })
+        .join("");
+      table.innerHTML = tableContent;
+  });

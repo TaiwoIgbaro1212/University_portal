@@ -29,6 +29,6 @@ const getCourseOfStudyById = async () => {
     durationInput.value = data.Duration;
     requiredCreditUnitsInput.value = data.RequiredCreditUnits;
     advisorInput.value = data.Advisor;
-    statusInput.value = data.Status == 1 ? 'Active' : 'Inactive';
+    statusInput.value = data.Status == 1 ? 'true' : 'false';
 }
 document.addEventListener('DOMContentLoaded', getCourseOfStudyById);

@@ -6,10 +6,14 @@ let globalLecturerId;
 
 const populate = async () => {
   try {
+    const response2 = await axios.get(`${BASE_URL}/api/v1/departments`);
+    const data2 = response2.data;
+    departments = data2;
     const table = document.getElementById('table-body');
     const response = await axios.get('http://192.168.17.220:8097/api/v1/lecturers');
     const data = response.data;
     lecturers = data;
+    generateSelectOptions();
 
     data.forEach((lecturer, index) => {
       const row = document.createElement('tr');
@@ -44,6 +48,17 @@ const populate = async () => {
 
 }
 
+const generateSelectOptions = () => {
+  const selects = document.querySelectorAll(".departmentSelect");
+  selects.forEach((select) => {
+    departments.forEach((department) => {
+      const op = document.createElement("option");
+      op.value = department.DepartmentId;
+      op.innerText = department.Name;
+      select.appendChild(op);
+    });
+  });
+};
 
 document.addEventListener('DOMContentLoaded', populate);
 
@@ -119,9 +134,12 @@ function handleDetailClick(lecturerId) {
 
 
 function populateEditForm(lecturer) {
-  // const editForm = document.getElementById('editingForm')
+  const editForm = document.getElementById('editingForm');
+  document.getElementById("departmentId").value = lecturer.DepartmentId;
+  document.getElementById("firstNameInput").value = lecturer.FirstName;
+  document.getElementById("surnameInput").value = lecturer.Surname;
+  document.getElementById("staffIdInput").value = lecturer.StaffId
   // Array.from(editForm.elements).forEach((element) => {
-  //   // console.log(editForm.elements)
   //   if (element.name === 'Status') {
   //     element.checked = lecturer[element.name] === 1 ? true : false;
   //   }
@@ -150,7 +168,9 @@ editForm.addEventListener('submit', (e) => {
 
   console.log(data)
   validate.isChosen(data.FacultyId, "Faculty Name")
-  validate.length(data.Name, 3, 50, 'Name');
+  validate.length(data.FirstName, 3, 50, "First Name");
+  validate.length(data.Surname, 3, 50, "Surname");
+  validate.length(data.OtherName, 3, 10, "Other Name");
   validate.length(data.StaffId, 3, 10, 'StaffId');
   // validate.length(data.Code, 3, 10, 'Code');
 

@@ -1,4 +1,5 @@
 const addDepartmentForm = document.getElementById('addDepartmentForm');
+const table = document.getElementById('table-body');
 const BASE_URL = 'http://192.168.17.220:8097';
 let departments = [];
 let faculties = [];
@@ -6,7 +7,6 @@ let globalDepartmentId;
 
 
 const renderTable = () => {
-  const table = document.getElementById('table-body');
   departments.forEach((department, index) => {
     const row = document.createElement('tr');
     row.innerHTML = `
@@ -63,61 +63,62 @@ const populate = async () => {
 
 document.addEventListener('DOMContentLoaded', populate);
 
-// SEARCH AREA
+//  SEARCH AREA
 
-// const searchModalForm = document.querySelector('#searchModalForm');
-// const searchModal = document.getElementById("searchModal");
-// const searchModalEvent = new MouseEvent('click', {
+const searchModalForm = document.querySelector('#searchModalForm');
+const searchModal = document.getElementById("searchModal");
+const searchModalEvent = new MouseEvent('click', {
 
-//   view: window,
-//   bubbles: true,
-//   cancelable: true
-// });
+  view: window,
+  bubbles: true,
+  cancelable: true
+});
 
-// searchModalForm.addEventListener('submit', searchDepartmentForm)
+searchModalForm.addEventListener('submit', searchDepartmentForm)
 
-// async function searchDepartmentForm(e) {
-//   e.preventDefault()
-//   table.innerHTML = null
+async function searchDepartmentForm(e) {
+  e.preventDefault()
+  table.innerHTML = null
 
-//   const formData = new FormData(searchModalForm);
-//   const searchFormData = Object.fromEntries(formData.entries());
-//   if (searchFormData.Status) {
-//     searchFormData.Status = 1;
-//   } else {
-//     searchFormData.Status = 0;
-//   }
+  const formData = new FormData(searchModalForm);
+  const searchFormData = Object.fromEntries(formData.entries());
+  if (searchFormData.Status) {
+    searchFormData.Status = 1;
+  } else {
+    searchFormData.Status = 0;
+  }
 
-//   console.log(searchFormData);
-//   const fetchFilter = await axios.post(`${BASE_URL}/api/v1/departments/`, searchFormData);
-//   const resultFilter = await fetchFilter
-//   const filteredData = resultFilter.data
+  console.log(searchFormData);
+  const fetchFilter = await axios.post(`${BASE_URL}/api/v1/departments/`, searchFormData);
+  const resultFilter = await fetchFilter
+  const filteredData = resultFilter.data
 
-//   if (filteredData.length < 1) {
-//     setTimeout(() => {
-//       alert('No Such Data Exist')
-//     }, 1000);
-//   }
+  if (filteredData.length < 1) {
+    setTimeout(() => {
+      alert('No Such Data Exist')
+    }, 1000);
+  }
 
-//   filteredData.forEach((department, index) => {
-//     const row = document.createElement('tr');
-//     row.innerHTML = `
-//     <td>${index + 1}</td>
-//     <td>${department.Name}</td>
-//     <td>${department.UniqueId}</td>
-//     <td>${department.Code}</td>
-//     <td>${department.Status == 1 ? '<div class="text-success">Active</div>' : '<div class="text-danger">Inactive<div>'}</td>
-//     <td>
-//     <button 
-//     onclick="handleEditClick(${department.DepartmentId})" 
-//     class="btn btn-primary"
-//     data-toggle="modal"
-//     data-target="#editModal">Edit</button>
+  filteredData.forEach((department, index) => {
+    const row = document.createElement('tr');
+    row.innerHTML = `
+    <td>${index + 1}</td>
+    <td>${department.Name}</td>
+    <td>${department.UniqueId}</td>
+    <td>${department.Code}</td>
+    <td>${department.Status == 1 ? '<div class="text-success">Active</div>' : '<div class="text-danger">Inactive<div>'}</td>
+    <td>
+    <button 
+    onclick="handleEditClick(${department.DepartmentId})" 
+    class="btn btn-primary"
+    data-toggle="modal"
+    data-target="#editModal">Edit</button>
 
-//       <button class="btn btn-danger"  onclick="deletedepartment(${department.DepartmentId})">Delete</button>`;
-//     table.appendChild(row);
-//   });
-// }
+      <button class="btn btn-danger"  onclick="deletedepartment(${department.DepartmentId})">Delete</button>`;
+    table.appendChild(row);
+  });
+}
+// DELETE DEPARTMENT
 
 function deletedepartment(id) {
   // console.log(id);

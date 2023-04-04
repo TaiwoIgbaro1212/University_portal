@@ -25,7 +25,6 @@
 
     <!-- Custom styles for this template-->
     <link href="../../../Assets/css/sb-admin-2.min.css" rel="stylesheet" />
-
   </head>
 
   <body id="page-top">
@@ -197,7 +196,6 @@
 
       <!-- Content Wrapper -->
       <div id="content-wrapper" class="d-flex flex-column">
-
         <!-- Modal for Faculty -->
         <div class="modal" tabindex="-1" role="dialog" id="addModal">
           <div class="modal-dialog" role="document">
@@ -252,7 +250,6 @@
                         name="Status"
                         type="checkbox"
                         id="status"
-                        
                       />
                       <!-- TODO: fix checkbox bug here -->
                       <label class="form-check-label" for="status">
@@ -322,70 +319,73 @@
         </div>
         <!-- End of Modal for Search -->
 
-          <!-- EDIT FORM -->
+        <!-- EDIT FORM -->
         <div class="modal" tabindex="-1" role="dialog" id="editModal">
-            <div class="modal-dialog" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title">Edit Faculty</h5>
-                  <button
-                    type="button"
-                    class="close"
-                    data-dismiss="modal"
-                    aria-label="Close"
-                  ><span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-                <div class="modal-body">
-                  <form id="editingForm" class="editing_form">
-                    <div class="form-group">
-                      <label for="nameInput">Name</label>
-                      <input
-                        type="text"
-                        class="form-control"
-                        value=""
-                        id="nameInput"
-                        name="Name"
-                        placeholder="Enter faculty name"
-                      />
-                    </div>
-                    <div class="form-group">
-                      <label for="uniqueIdInput">Unique ID</label>
-                      <input
-                        type="text"
-                        class="form-control"
-                        id="uniqueIdInput"
-                        name="UniqueId"
-                        placeholder="Enter unique ID"
-                      />
-                    </div>
-                    <div class="form-group">
-                      <label for="codeInput">Code</label>
-                      <input
-                        type="text"
-                        class="form-control"
-                        id="codeInput"
-                        name="Code"
-                        placeholder="Enter code"
-                      />
-                    </div>
-                    <div class="form-group">
-                      <label for="statusInput">Status</label>
-                      <input type="checkbox" class="form-check-inline" id="statusInput" name="Status">
-                    </div>
-                    <button type="submit" class="btn btn-primary">
-                      Submit
-                    </button>
-                  </form>
-                </div>
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">Edit Faculty</h5>
+                <button
+                  type="button"
+                  class="close"
+                  data-dismiss="modal"
+                  aria-label="Close"
+                >
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <form id="editingForm" class="editing_form">
+                  <div class="form-group">
+                    <label for="nameInput">Name</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      value=""
+                      id="nameInput"
+                      name="Name"
+                      placeholder="Enter faculty name"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="uniqueIdInput">Unique ID</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="uniqueIdInput"
+                      name="UniqueId"
+                      placeholder="Enter unique ID"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="codeInput">Code</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="codeInput"
+                      name="Code"
+                      placeholder="Enter code"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="statusInput">Status</label>
+                    <input
+                      type="checkbox"
+                      class="form-check-inline"
+                      id="statusInput"
+                      name="Status"
+                    />
+                  </div>
+                  <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
               </div>
             </div>
+          </div>
 
           <!-- EDITING FORM END  -->
         </div>
 
-        <!---------------------------End of modals----------------------------------->
-
+        <!-----------------End of modals---------->
 
         <!-- Main Content -->
         <div id="content">
@@ -402,7 +402,7 @@
             </button>
 
             <!-- Topbar Search -->
-            <form
+            <!-- <form
               class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search"
             >
               <div class="input-group">
@@ -419,7 +419,7 @@
                   </button>
                 </div>
               </div>
-            </form>
+            </form> -->
 
             <!-- Topbar Navbar -->
             <ul class="navbar-nav ml-auto">
@@ -651,36 +651,86 @@
 
               <!-- Search form -->
 
-                <div class="d-flex">
+              <div>
+                <form id="searchFilter" class="d-flex">
                   <div class="dropdown">
-                    <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <button
+                      class="btn btn-primary dropdown-toggle"
+                      type="button"
+                      id="dropdownMenuButton"
+                      data-toggle="dropdown"
+                      aria-haspopup="true"
+                      aria-expanded="false"
+                    >
                       Filter
                     </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                      <a class="dropdown-item" href="#">Action</a>
-                      <a class="dropdown-item" href="#">Another action</a>
-                      <a class="dropdown-item" href="#">Something else here</a>
+                    <div
+                      class="dropdown-menu"
+                      aria-labelledby="dropdownMenuButton"
+                    >
+                      <div>
+                        <div class="dropdown-header">Status</div>
+                        <div class="dropdown-item" data-check>
+                          <input
+                            class="form-check-inline"
+                            id="IActive"
+                            name="status"
+                            value="1"
+                            type="radio"
+                            onclick="activeStatus()"
+                          />
+                          <label for="IActive">Active</label>
+                        </div>
+                        <div class="dropdown-item" data-check>
+                          <input
+                            class="form-check-inline"
+                            id="IInactive"
+                            name="status"
+                            value="0"
+                            type="radio"
+                            onclick="activeStatus()"
+                          />
+                          <label for="IInactive">Inactive</label>
+                        </div>
+                        <!-- <div class="dropdown-item" data-check>
+                          <input
+                            class="form-check-inline"
+                            id="IAll"
+                            name="status"
+                            value="all"
+                            type="radio"
+                            checked
+                          />
+                          <label for="IAll">All</label>
+                        </div> -->
+                        <!-- <button
+                          class="btn btn-primary btn-block disabled"
+                          id="submit"
+                        >
+                          Search
+                        </button> -->
+                      </div>
                     </div>
-                </div>
-              <form
-                class="d-none d-sm-inline-block form-inline ml-md-3 my-2 my-md-0 mw-100 navbar-search"
-              >
-                <div class="input-group">
-                  <input
-                    type="text"
-                    class="form-control bg-gray-200 border-primary small"
-                    placeholder="Search for..."
-                    aria-label="Search"
-                    aria-describedby="basic-addon2"
-                  />
-                  <div class="input-group-append">
-                    <button class="btn btn-primary" type="button">
-                      <i class="fas fa-search fa-sm"></i>
-                    </button>
                   </div>
-                </div>
-              </form>
-            </div>
+
+                  <div class="input-group">
+                    <input
+                      type="text"
+                      class="form-control bg-gray-200 border-primary small"
+                      placeholder="Search for..."
+                      aria-label="Search"
+                      aria-describedby="basic-addon2"
+                      name="Name"
+                      value=""
+                    />
+                    <div class="input-group-append">
+                      <button class="btn btn-primary" type="submit">
+                        <i class="fas fa-search fa-sm"></i>
+                      </button>
+                    </div>
+                  </div>
+                </form>
+              </div>
 
               <!-- End of search bar -->
             </div>
@@ -720,7 +770,6 @@
         <!-- End of Footer -->
       </div>
       <!-- End of Content Wrapper -->
-      
     </div>
 
     <!-- Bootstrap core JavaScript-->

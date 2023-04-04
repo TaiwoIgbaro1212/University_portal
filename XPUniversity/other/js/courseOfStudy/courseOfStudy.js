@@ -2,16 +2,19 @@ const addCourseOfStudyForm = document.getElementById('addCourseOfStudyForm');
 const BASE_URL = 'http://192.168.17.220:8097';
 let departments = [];
 let coursesOfStudy = [];
-let globalCourseOfStudy;
+let globalCourseOfStudyId;
 
 
 const renderTable = () => {
   const table = document.getElementById('table-body');
   coursesOfStudy.forEach((courseOfStudy, index) => {
+      const department = departments.find(
+        (department) => department.DepartmentId === courseOfStudy.DepartmentId
+      );
     const row = document.createElement('tr');
     row.innerHTML = `
     <td>${index + 1}</td>
-        <td>${courseOfStudy.DepartmentId}</td>
+        <td>${department.Name}</td>
         <td>${courseOfStudy.Name}</td>
         <td>${courseOfStudy.ShortName}</td>
         <td>${courseOfStudy.UniqueId}</td>
@@ -37,11 +40,11 @@ const renderTable = () => {
 
 const generateSelectOptions = () => {
   const selects = document.querySelectorAll('.departmentSelect');
-  // console.log(faculties)
+  // console.log(departments)
   selects.forEach(select => {
     departments.forEach(courseOfStudy => {
       const op = document.createElement('option')
-      op.value = courseOfStudy.CourseOfStudyId
+      op.value = courseOfStudy.DepartmentId
       op.innerText = courseOfStudy.Name
       select.appendChild(op)
     })
@@ -64,7 +67,6 @@ const populate = async () => {
     console.log(error);
   }
 }
-
 document.addEventListener('DOMContentLoaded', populate);
 
 // const populate = async () => {
@@ -232,7 +234,7 @@ function handleEditClick(courseOfStudyId) {
 
   //fill in form values with department information
   populateEditForm(courseOfStudy);
-  globalCourseOfStudy = courseOfStudyId;
+  globalCourseOfStudyId = courseOfStudyId;
 }
 
 const courseOfStudyIdInput = document.querySelector('#courseOfStudyId');
@@ -258,7 +260,8 @@ function handleDetailClick(courseOfStudyId) {
 }
 
 function populateEditForm(courseOfStudy) {
-  const editForm = document.getElementById('editingForm')
+  const editForm = document.getElementById('editingForm');
+  editForm.DepartmentId.value = courseOfStudy.DepartmentId;
   Array.from(editForm.elements).forEach((element) => {
 
     if (element.name === 'Status') {
@@ -283,10 +286,10 @@ editingForm.addEventListener('submit', (e) => {
   data.Status = data.Status ? 1 : 0;
 
   // GET GLOBAL CourseOfStudyId
-  data.CourseOfStudyId = globalCourseOfStudy;
+  data.CourseOfStudyId = globalCourseOfStudyId;
 
   //RESET GLOBAL CourseOfStudyId
-  globalCourseOfStudy = undefined;
+  globalCourseOfStudyiD = undefined;
 
   validate.isChosen(data.Name, 3, 50, 'Name');
   validate.length(data.ShortName, 3, 50, 'ShortName');
